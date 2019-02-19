@@ -6,41 +6,33 @@ public class CameraController : MonoBehaviour {
 
 	/**
 	 * The camera controls are as follows:
-	 * Arrows/WASD/Shift+IJKL: Pan Camera
-	 * IJKL/Shift+Arrows/Shift+WASD: Rotate Camera
-	 * RMB + drag: Pan Camera
-	 * MMB + drag: Rotate Camera
+	 * Arrows/WASD: Rotate Camera
+	 * RMB + drag: Rotate Camera
 	 * E: Reset to default position
-	 * Move mouse to edges of screen: Pan Camera
-	 * Scroll wheel: control zoom
-	 * R/F: control zoom
+	 * Scroll wheel: adjust zoom
 	 */
 	//These are just private so they do not clutter the component box, but these can be made public and adjusted if desired.
 	private float zoomSpeedExp = 2f;  //The rate at which the camera exponentially zooms to achieve the desired distance.
 	private float zoomSpeedLin = 1;     //The rate at which the camera linearally zooms to achieve the desired distance.
 	private float zoomControlMultiplier = 7;   //The rate at which scrolling the mouse changes the zoom level of the camera.
-	private float minZoomDistance = -10;   //The maximum distance allowed for the camera zoom.
-	private float maxZoomDistance = -2;    //The minimum distance allowed for the camera zoom.
-	private float rotMomentumDecayExp = 3;      //The rate at which the camera exponentially slows down its rotation.
+	private float rotateSpeedKeys = 15;
+	public float minZoomDistance = 10;   //The maximum distance allowed for the camera zoom.
+	public float maxZoomDistance = 	2;    //The minimum distance allowed for the camera zoom.
+	private float rotMomentumDecayExp = 3f; //The rate at which the camera exponentially slows down its rotation.
 	private float rotMomentumDecayLin = 1.0f;   //The rate at which the camera linerally slows down its rotation.
 	private float linMomentumDecayExp = 1.0f;      //The rate at which the camera exponentially slows down its translation.
-	private float linMomentumDecayLin = 0.09f;      //The rate at which the camera linearally slows down its translation.
+	private float linMomentumDecayLin = 0.05f;      //The rate at which the camera linearally slows down its translation.
 	private float rotateSpeed = 0.05f;      //The rate at which dragging adjusts the camera's rotational momentum.
-	private float translateSpeed = 0.01f;       //The rate at which dragging adjusts the camera's translational momentum.
+	//private float verticalRotateMult = 2;	//The relative rate at which to increase the vertical rotation (pitch).
+	//private float verticalDecayMult = 0.1f;		//The relative rate at which to decrease the decay of vertical rotation (pitch).
 	public bool invertCameraX = false;  //Whether to invert the x axis when rotating the camera.
 	public bool invertCameraY = false;  //Whether to invert the y axis when rotating the camera.
-	public bool invertDragPan = false;  //Whether to invert the mouse dragging controls when sliding the camera around.
-	private float translateSpeedBorder = 0.5f;            //The rate at which the camera slides due to positioning the mouse around the edges of the screen.
-	private float panBorderThickness = 10f; //The size of the border where the mouse will scroll.
-
 	private Vector3 lastMousePos = Vector3.zero;    //The previous position of the mouse, used to calculate dragging.
 	private Vector2 rotationMomentum = Vector2.zero;    //The rotational momentum of the camera, used to fluidly rotate the camera.
-	private Vector2 linearMomentum = Vector2.zero;      //The translational momentum of the camera, used to fluidly move the camera.
 	private float maintainedDistance = 1;   //The distance intended to be maintained between the camera and the terrain, adjusted via mouse wheel.
-	private float lastPlaneViewed = 0;      //The y-coordinate of the tile being looked at. This is used to prevent things like trees and players from messing with the zoom.
 
-	private int maxXPos = 10;
-	private int maxYPos = 10;
+	private Vector3 focus; //The current position that is the focus of the camera.
+	public Vector3 idealFocus = Vector3.zero; //The position that the camera's focus will gradually move towards.
 
 	public static bool inputEnabled = true;
 
@@ -62,49 +54,17 @@ public class CameraController : MonoBehaviour {
 		}
 
 		//BEGINNING OF SETUP SECTION
-		//Before any input is received, the position of the camera is rewritten in terms of the point it is looking at and the distance between the camera and the point.
-
-		RaycastHit hit;
-		//This block tests if the camera is looking at a tile and readjusts the height of the current tile being looked at
-		Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-		if (Physics.Raycast(ray, out hit, 1000.0f)) {
-			lastPlaneViewed = hit.transform.position.y;
-		}
-		float distance = Mathf.Abs(lastPlaneViewed - gameObject.transform.position.y) / (gameObject.transform.rotation * Vector3.forward).y;    //The distance between the camera and focus.
-		Vector3 focus = gameObject.transform.position - (gameObject.transform.rotation * Vector3.forward) * distance; //The exact point being looked at.
+		float distance = Mathf.Abs((gameObject.transform.position - focus).magnitude);
 
 		//END OF SETUP SECTION, BEGINNING OF INPUT SECTION
-
-		//Mouse panning
-		if (Input.mousePosition.y >= Screen.height - panBorderThickness) {
-			linearMomentum.y += translateSpeedBorder * Time.deltaTime;
+		if (Input.GetAxis("Vertical") != 0) {
+			rotationMomentum.y -= rotateSpeedKeys * Time.deltaTime * Input.GetAxis("Vertical");
 		}
-		if (Input.mousePosition.y <= panBorderThickness) {
-			linearMomentum.y -= translateSpeedBorder * Time.deltaTime;
-		}
-		if (Input.mousePosition.x >= Screen.width - panBorderThickness) {
-			linearMomentum.x += translateSpeedBorder * Time.deltaTime;
-		}
-		if (Input.mousePosition.x <= panBorderThickness) {
-			linearMomentum.x -= translateSpeedBorder * Time.deltaTime;
+		if (Input.GetAxis("Horizontal") != 0) {
+			rotationMomentum.x -= rotateSpeedKeys * Time.deltaTime * Input.GetAxis("Horizontal");
 		}
 
-		//This block sets the linear and rotation momenta, changing them on mouse movement and slowing them down gradually.
-		//translational momentum is adjusted by holding RMB and dragging, while Rotational is adjusted by holding MMB and dragging.
-		// if (Input.GetAxis("AltSelect") > 0) {
-		// 	linearMomentum += new Vector2((Input.mousePosition.x - lastMousePos.x) * translateSpeed, (Input.mousePosition.y - lastMousePos.y) * translateSpeed) * (invertDragPan ? 1 : -1);
-		// }
-		if (Mathf.Abs(linearMomentum.x) > (linMomentumDecayLin + linMomentumDecayExp * linearMomentum.x) * Time.deltaTime) {
-			linearMomentum.x -= (linMomentumDecayLin + linMomentumDecayExp * linearMomentum.x * Mathf.Sign(linearMomentum.x)) * Time.deltaTime * Mathf.Sign(linearMomentum.x);
-		} else {
-			linearMomentum.x = 0;
-		}
-		if (Mathf.Abs(linearMomentum.y) > (linMomentumDecayLin + linMomentumDecayExp * linearMomentum.y) * Time.deltaTime) {
-			linearMomentum.y -= (linMomentumDecayLin + linMomentumDecayExp * linearMomentum.y * Mathf.Sign(linearMomentum.y)) * Time.deltaTime * Mathf.Sign(linearMomentum.y);
-		} else {
-			linearMomentum.y = 0;
-		}
-		if (Input.GetAxis("MiddleSelect") > 0) {
+		if (Input.GetAxis("AltSelect") > 0) {
 			rotationMomentum += new Vector2((Input.mousePosition.x - lastMousePos.x) * rotateSpeed, (Input.mousePosition.y - lastMousePos.y) * rotateSpeed);
 		}
 		if (Mathf.Abs(rotationMomentum.x) > (rotMomentumDecayLin + rotMomentumDecayExp * rotationMomentum.x) * Time.deltaTime) {
@@ -121,19 +81,25 @@ public class CameraController : MonoBehaviour {
 
 		//This has the mouse wheel control the current zoom distance.
 		if (Input.GetAxis("MouseScrollWheel") != 0) {
-			maintainedDistance += Input.GetAxis("MouseScrollWheel") * zoomControlMultiplier;
+			maintainedDistance -= Input.GetAxis("MouseScrollWheel") * zoomControlMultiplier;
 			maintainedDistance = Mathf.Clamp(maintainedDistance, minZoomDistance, maxZoomDistance);
 		}
 
 		//END OF INPUT SECTION, BEGINNING OF MOVEMENT SECTION
 
 		//First, the focus is moved according to any translation inputs.
-		focus += Quaternion.Euler(0, gameObject.transform.rotation.eulerAngles.y, 0) * new Vector3(linearMomentum.x, 0, linearMomentum.y);
-		var unclampedFocus = focus;
-		focus = new Vector3(Mathf.Clamp(focus.x, -5, maxXPos), focus.y, Mathf.Clamp(focus.z, -5, maxYPos));
-		if (!focus.Equals(unclampedFocus)) {
-			linearMomentum = Vector2.zero;
+		float sep = (focus-idealFocus).magnitude;
+		if (sep > sep*linMomentumDecayExp+linMomentumDecayLin){
+			focus += (idealFocus-focus).normalized*(sep*linMomentumDecayExp+linMomentumDecayLin);
+		} else {
+			focus = idealFocus;
 		}
+		// focus += Quaternion.Euler(0, gameObject.transform.rotation.eulerAngles.y, 0) * new Vector3(linearMomentum.x, 0, linearMomentum.y);
+		// var unclampedFocus = focus;
+		// focus = new Vector3(Mathf.Clamp(focus.x, -5, maxXPos), focus.y, Mathf.Clamp(focus.z, -5, maxYPos));
+		// if (!focus.Equals(unclampedFocus)) {
+		// 	linearMomentum = Vector2.zero;
+		// }
 
 		//Next, the distance is increased or decreased, depending on the current intended distance (controlled by scrolling).
 		//The difference between the real and ideal distances (denoted D) decreases at a rate of E*D+L, where E is the exponential decay factor and L is the linear decay factor.
@@ -149,16 +115,14 @@ public class CameraController : MonoBehaviour {
 		newDir.eulerAngles += new Vector3(-rotationMomentum.y * (invertCameraY ? -1 : 1), rotationMomentum.x * (invertCameraX ? -1 : 1), 0);
 		float prevX = newDir.eulerAngles.x;
 		newDir.eulerAngles = new Vector3(Mathf.Clamp(newDir.eulerAngles.x, 15, 75), newDir.eulerAngles.y, newDir.eulerAngles.z);
-		if (prevX != newDir.eulerAngles.x) {
+		if (Mathf.Abs(prevX - newDir.eulerAngles.x) > 0.001) {	//float inequality
 			rotationMomentum.y = 0;
 		}
-		gameObject.transform.position = focus + ((newDir) * Vector3.forward) * distance;
+		if (Mathf.Abs(newDir.eulerAngles.z) > 0.001) {
+			newDir.eulerAngles = new Vector3(newDir.eulerAngles.x, newDir.eulerAngles.y, 0);
+		}
+		gameObject.transform.position = focus - ((newDir) * Vector3.forward) * distance;
 		gameObject.transform.rotation = newDir;
-	}
-
-	public void updateMaxPos(int x, int y) {
-		this.maxXPos = x;
-		this.maxYPos = y;
 	}
 
 	public void resetCamera() {
