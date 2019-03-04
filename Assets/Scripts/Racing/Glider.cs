@@ -80,6 +80,12 @@ public class Glider : MonoBehaviour {
 		Vector3 lift = aeroForce();
 		rb.AddForce(transform.forward * thrust + lift);
 		rb.AddForce(Vector3.down * 4.9f, ForceMode.Acceleration);
+
+		Matrix4x4 R_eb = Matrix4x4.Rotate(rb.rotation);
+		Vector3 vel_b = R_eb.inverse.MultiplyVector(rb.velocity);
+		float alpha = Mathf.Atan2(-vel_b.y, vel_b.z);
+		rb.AddTorque(transform.right * alpha / 15);
+		rb.AddTorque(transform.forward * vel_b.x / 25);
 	}
 
 	Vector3 aeroForce() {
