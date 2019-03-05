@@ -63,11 +63,11 @@ public class CameraController : MonoBehaviour {
 		float distance = Mathf.Abs((gameObject.transform.position - focus).magnitude);
 
 		//END OF SETUP SECTION, BEGINNING OF INPUT SECTION
-		if (Input.GetAxis("Vertical") != 0) {
-			rotationMomentum.y -= rotateSpeedKeys * Time.deltaTime * Input.GetAxis("Vertical");
+		if (Input.GetAxis("KeysOnlyVertical") != 0) {
+			rotationMomentum.y -= rotateSpeedKeys * Time.deltaTime * Input.GetAxis("KeysOnlyVertical");
 		}
-		if (Input.GetAxis("Horizontal") != 0) {
-			rotationMomentum.x -= rotateSpeedKeys * Time.deltaTime * Input.GetAxis("Horizontal");
+		if (Input.GetAxis("KeysOnlyHorizontal") != 0) {
+			rotationMomentum.x -= rotateSpeedKeys * Time.deltaTime * Input.GetAxis("KeysOnlyHorizontal");
 		}
 
 		if (Input.GetAxis("AltSelect") > 0) {
