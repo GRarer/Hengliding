@@ -1064,9 +1064,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7da659d169ab294caa74b1d01a1e110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minZoomDistance: 2
+  maxZoomDistance: 10
   invertCameraX: 0
   invertCameraY: 0
-  invertDragPan: 0
+  idealFocus: {x: -1.21, y: 2.6011393, z: -0.02755028}
+  startingObject: {fileID: 2129697506}
+  startingYOffset: 1
 --- !u!1001 &974364239
 PrefabInstance:
   m_ObjectHideFlags: 0
