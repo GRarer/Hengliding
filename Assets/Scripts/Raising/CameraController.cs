@@ -36,9 +36,15 @@ public class CameraController : MonoBehaviour {
 
 	public static bool inputEnabled = true;
 
+	public GameObject startingObject;	//The object to intially have the camera look at.
+	public float startingYOffset;	//The amount of y-value to add to the center of the startingObject to make the camera have a focus that is not inside the starting object.
+
 	// Use this for initialization
 	void Start() {
 		maintainedDistance = (minZoomDistance + maxZoomDistance) / 2f;
+		if (startingObject != null) {
+			idealFocus = startingObject.transform.position + new Vector3(0,startingYOffset,0);
+		}
 		resetCamera();
 	}
 
