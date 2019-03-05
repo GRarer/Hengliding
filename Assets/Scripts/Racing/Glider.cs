@@ -18,6 +18,7 @@ public class Glider : MonoBehaviour {
 	public float rho = 1.225f;
 	public bool rollYawCoupled = false;
 	public Text indicator;
+	private float alphaCrit = Mathf.PI / 12;
 
 	// Use this for initialization
 	void Start () {
@@ -42,8 +43,6 @@ public class Glider : MonoBehaviour {
 				thrust = 0;
 			}
 		}
-		
-		
 	}
 
 	void FixedUpdate() {
@@ -75,11 +74,17 @@ public class Glider : MonoBehaviour {
 			}
 			rb.AddTorque(transform.up * rud * rudder * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
 		}
-		
+		Matrix4x4 R_eb = Matrix4x4.Rotate(rb.rotation);
+		Vector3 vel_b = R_eb.inverse.MultiplyVector(rb.velocity);
+		float alpha = Mathf.Atan2(-vel_b.y, vel_b.z);
+
+		float alphaErr = 0 - alpha;
+		Debug.Log(alphaErr);
 
 		Vector3 lift = aeroForce();
 		rb.AddForce(transform.forward * thrust + lift);
 		rb.AddForce(Vector3.down * 4.9f, ForceMode.Acceleration);
+		// rb.AddTorque(-transform.right * alphaErr / 10);
 	}
 
 	Vector3 aeroForce() {
@@ -89,10 +94,9 @@ public class Glider : MonoBehaviour {
 
 		float alpha = Mathf.Atan2(-vel_b.y, vel_b.z);
 		// Debug.Log("Vel_b: " + vel_b.ToString());
-		indicator.text = string.Format("Airspeed: {0}\nAlpha: {1}", vel_b.magnitude, alpha);
+		indicator.text = string.Format("Airspeed: {0}\nAlpha: {1}\nAlpha Crit: {2}", vel_b.magnitude, alpha, alphaCrit);
 
 		float cl = 0;
-		float alphaCrit = Mathf.PI / 12;
 		float alphaMax = Mathf.PI / 6;
 		
 		if (Mathf.Abs(alpha) <= alphaCrit) {
