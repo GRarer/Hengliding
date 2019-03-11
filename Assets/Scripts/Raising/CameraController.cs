@@ -16,15 +16,14 @@ public class CameraController : MonoBehaviour {
 	private float zoomSpeedLin = 1;     //The rate at which the camera linearally zooms to achieve the desired distance.
 	private float zoomControlMultiplier = 7;   //The rate at which scrolling the mouse changes the zoom level of the camera.
 	private float rotateSpeedKeys = 15;
-	public float minZoomDistance = 10;   //The maximum distance allowed for the camera zoom.
-	public float maxZoomDistance = 	2;    //The minimum distance allowed for the camera zoom.
+	private float minZoomDistance = 2;   //The maximum distance allowed for the camera zoom.
+	private float maxZoomDistance = 10;    //The minimum distance allowed for the camera zoom.
 	private float rotMomentumDecayExp = 3f; //The rate at which the camera exponentially slows down its rotation.
 	private float rotMomentumDecayLin = 1.0f;   //The rate at which the camera linerally slows down its rotation.
 	private float linMomentumDecayExp = 1.0f;      //The rate at which the camera exponentially slows down its translation.
 	private float linMomentumDecayLin = 0.05f;      //The rate at which the camera linearally slows down its translation.
 	private float rotateSpeed = 0.05f;      //The rate at which dragging adjusts the camera's rotational momentum.
-	//private float verticalRotateMult = 2;	//The relative rate at which to increase the vertical rotation (pitch).
-	//private float verticalDecayMult = 0.1f;		//The relative rate at which to decrease the decay of vertical rotation (pitch).
+	private float panSpeed = 4f;
 	public bool invertCameraX = false;  //Whether to invert the x axis when rotating the camera.
 	public bool invertCameraY = false;  //Whether to invert the y axis when rotating the camera.
 	private Vector3 lastMousePos = Vector3.zero;    //The previous position of the mouse, used to calculate dragging.
@@ -36,14 +35,14 @@ public class CameraController : MonoBehaviour {
 
 	public static bool inputEnabled = true;
 
-	public GameObject startingObject;	//The object to intially have the camera look at.
+	public GameObject focusObject;	//The object to intially have the camera look at.
 	public float startingYOffset;	//The amount of y-value to add to the center of the startingObject to make the camera have a focus that is not inside the starting object.
 
 	// Use this for initialization
 	void Start() {
 		maintainedDistance = (minZoomDistance + maxZoomDistance) / 2f;
-		if (startingObject != null) {
-			idealFocus = startingObject.transform.position + new Vector3(0,startingYOffset,0);
+		if (focusObject != null) {
+			idealFocus = focusObject.transform.position + new Vector3(0,startingYOffset,0);
 		}
 		resetCamera();
 	}
@@ -64,10 +63,23 @@ public class CameraController : MonoBehaviour {
 
 		//END OF SETUP SECTION, BEGINNING OF INPUT SECTION
 		if (Input.GetAxis("KeysOnlyVertical") != 0) {
-			rotationMomentum.y -= rotateSpeedKeys * Time.deltaTime * Input.GetAxis("KeysOnlyVertical");
+			Vector3 fward = transform.rotation * Vector3.forward;
+			fward.y = 0;
+			fward = fward.normalized;
+			idealFocus += panSpeed * Time.deltaTime * Input.GetAxis("KeysOnlyVertical") * fward;
 		}
 		if (Input.GetAxis("KeysOnlyHorizontal") != 0) {
-			rotationMomentum.x -= rotateSpeedKeys * Time.deltaTime * Input.GetAxis("KeysOnlyHorizontal");
+			Vector3 sidew = transform.rotation * Vector3.right;
+			sidew.y = 0;
+			sidew = sidew.normalized;
+			idealFocus += panSpeed * Time.deltaTime * Input.GetAxis("KeysOnlyHorizontal") * sidew;
+		}
+
+		if (focusObject != null) {
+			Vector3 pos = focusObject.transform.position;
+			Vector3 sca = focusObject.transform.lossyScale;
+			idealFocus.x = Mathf.Clamp(idealFocus.x, pos.x-Mathf.Abs(sca.x/2), pos.x+Mathf.Abs(sca.x/2));
+			idealFocus.z = Mathf.Clamp(idealFocus.z, pos.z-Mathf.Abs(sca.z/2), pos.z+Mathf.Abs(sca.z/2));
 		}
 
 		if (Input.GetAxis("AltSelect") > 0) {
