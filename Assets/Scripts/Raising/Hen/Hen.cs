@@ -86,11 +86,12 @@ namespace Raising {
 			//TODO GUI for stats
 
 			StartCoroutine(size.increase(1));
+
 			Destroy(foodItem.gameObject);
 		}
 
 		public void finishBath(Bath bath) {
-			StartCoroutine(size.increase(1));
+			StartCoroutine(featherQuality.increase(1));
 			bath.unFill();
 		}
 
