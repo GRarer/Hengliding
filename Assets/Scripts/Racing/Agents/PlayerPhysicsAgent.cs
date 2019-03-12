@@ -12,7 +12,7 @@ namespace Racing.Agents{
             axisH = Mathf.Min(Mathf.Abs(axisH), 1) * Mathf.Sign(axisH);
             axisV = Mathf.Min(Mathf.Abs(axisV), 1) * Mathf.Sign(axisV);
             // Debug.Log(axisV * dNde);
-            return new Vector3(axisH * dMda, axisV * dNde, axisH * dLdr);
+            return new Vector3(axisV * dNde, axisH * dLdr, axisH * dMda);
         }
     }
 }

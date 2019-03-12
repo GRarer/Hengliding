@@ -29,6 +29,7 @@ public class Glider : MonoBehaviour {
 		rb.maxAngularVelocity = 5;
 		AR = Mathf.Pow(span, 2) / cord;
 		agent = new PlayerPhysicsAgent(ail, el, rud, this);
+		rb.velocity = transform.forward*10;
 	}
 	
 	// Update is called once per frame
@@ -49,7 +50,7 @@ public class Glider : MonoBehaviour {
 
 	void FixedUpdate() {
 		Vector3 u = agent.getInput();
-		rb.AddTorque((-transform.forward * u.x - transform.up * u.z + transform.right * u.y) * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
+		rb.AddTorque((-transform.forward * u.z + transform.up * u.y  + transform.right * u.x) * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
 
 		Matrix4x4 R_eb = Matrix4x4.Rotate(rb.rotation);
 		Vector3 vel_b = R_eb.inverse.MultiplyVector(rb.velocity);
@@ -59,11 +60,12 @@ public class Glider : MonoBehaviour {
 		// Debug.Log(alphaErr);
 
 		Vector3 lift = aeroForce();
+		Debug.Log(lift);
 		rb.AddForce(transform.forward * thrust + lift);
-		rb.AddForce(Vector3.down * 4.9f, ForceMode.Acceleration);
+		rb.AddForce(Vector3.down * 3.3f, ForceMode.Acceleration);
 
 		rb.AddTorque(transform.right * alpha / 15);
-		rb.AddTorque(transform.forward * vel_b.x / 25);
+		rb.AddTorque(transform.forward * vel_b.x / 20);
 	}
 
 	Vector3 aeroForce() {
@@ -72,7 +74,7 @@ public class Glider : MonoBehaviour {
 		Vector3 vel_b = R_eb.inverse.MultiplyVector(vel_e);
 
 		float alpha = Mathf.Atan2(-vel_b.y, vel_b.z);
-		// Debug.Log("Vel_b: " + vel_b.ToString());
+		Debug.Log("Vel_b: " + vel_b.ToString());
 		indicator.text = string.Format("Airspeed: {0}\nAlpha: {1}\nAlpha Crit: {2}", vel_b.magnitude, alpha, alphaCrit);
 
 		float cl = 0;
