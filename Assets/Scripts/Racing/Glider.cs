@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Racing.Collidables;
 
 public class Glider : MonoBehaviour {
+
+	
+	
 
 	private Rigidbody rb;
 	public float thrust = 0;
@@ -18,6 +22,7 @@ public class Glider : MonoBehaviour {
 	public float rho = 1.225f;
 	public bool rollYawCoupled = false;
 	public Text indicator;
+	public GameObject collisionExplosion;
 
 	// Use this for initialization
 	void Start () {
@@ -124,4 +129,26 @@ public class Glider : MonoBehaviour {
 
 		return force;
 	}
+
+	
+	 
+	void OnCollisionEnter(Collision other) {
+			if (other.relativeVelocity.magnitude > 3) {
+				GameObject explosion = GameObject.Instantiate(collisionExplosion);
+				explosion.transform.position = transform.position;
+				explosion.transform.parent = transform; // setting the parent here instead of during instantiation to avoid any potential scaling issues
+				explosion.transform.rotation = transform.rotation;
+			}
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.gameObject.GetComponent<RaceCollidable>() != null) {
+				Debug.Log("Collidable found");
+				RaceCollidable collidable = other.gameObject.GetComponent<RaceCollidable>();
+				collidable.applyAllEffects(this);
+		}
+	}
+
+	
+	
 }
