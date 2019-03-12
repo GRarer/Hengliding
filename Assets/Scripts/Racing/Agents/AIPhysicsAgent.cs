@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Racing.Agents{
-    public class PlayerPhysicsAgent : PhysicsAgent
+    public class AIPhysicsAgent : PhysicsAgent
     {
-        public PlayerPhysicsAgent(float dMda, float dNde, float dLdr, Glider glider) : base(dMda, dNde, dLdr, glider) {}
+        private Vector3 goal;
+        public AIPhysicsAgent(float dMda, float dNde, float dLdr, Glider glider, Vector3 goal) : base(dMda, dNde, dLdr, glider) {
+            this.goal = goal;
+        }
         public override Vector3 getInput() {
             float axisH = 2*(Input.mousePosition.x - Screen.width/2)/Screen.width;
             float axisV = 2*(Input.mousePosition.y - Screen.height/2)/Screen.height;
