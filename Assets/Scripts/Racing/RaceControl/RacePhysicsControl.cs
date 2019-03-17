@@ -1,33 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Racing.Agents;
 
 namespace Racing {
 
 	public class RacePhysicsControl : MonoBehaviour {
-
-		public Canvas uiCanvas;
-
-		public GameObject leaderboard;
-
-		public RaceStateInput raceStateInput;
-		public RaceState currentState = null;
-		
+		public Transform goal;
+		public Glider glider;
+		public Glider glider2;
 		void Start() {
-			// raceStateInput = new RaceStateInput(this);
-			// currentState = new RaceBeginState(raceStateInput);
-		}
-
-		void Update() {
-			currentState.updateState();
-		}
-
-		public void chickenAtEnd() {
-			raceStateInput.isPlayerAtEnd = true;
-		}
-
-		public void displayLeaderboard() {
-			Instantiate(leaderboard, uiCanvas.transform);
+			glider.setAgent(new AIPhysicsAgent(glider.ail, glider.el, glider.rud, glider, goal.position));
+			glider2.setAgent(new PlayerPhysicsAgent(glider2.ail, glider2.el, glider2.rud, glider2));
 		}
 	}
 }
