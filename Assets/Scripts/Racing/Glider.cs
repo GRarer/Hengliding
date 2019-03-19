@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Racing.Agents;
+using Racing.Collidables;
 
 public class Glider : MonoBehaviour {
+
+	
+	
 
 	private Rigidbody rb;
 	public float thrust = 0;
@@ -21,6 +25,7 @@ public class Glider : MonoBehaviour {
 	public Text indicator;
 	private float alphaCrit = Mathf.PI / 12;
 	private PhysicsAgent agent;
+	public GameObject collisionExplosion;
 
 	// Use this for initialization
 	void Start () {
@@ -113,4 +118,25 @@ public class Glider : MonoBehaviour {
 	public void setAgent(PhysicsAgent agent) {
 		this.agent = agent;
 	}
+	
+	 
+	void OnCollisionEnter(Collision other) {
+			if (other.relativeVelocity.magnitude > 3) {
+				GameObject explosion = GameObject.Instantiate(collisionExplosion);
+				explosion.transform.position = transform.position;
+				explosion.transform.parent = transform; // setting the parent here instead of during instantiation to avoid any potential scaling issues
+				explosion.transform.rotation = transform.rotation;
+			}
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.gameObject.GetComponent<RaceCollidable>() != null) {
+				Debug.Log("Collidable found");
+				RaceCollidable collidable = other.gameObject.GetComponent<RaceCollidable>();
+				collidable.applyAllEffects(this);
+		}
+	}
+
+	
+	
 }

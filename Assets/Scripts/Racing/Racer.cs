@@ -4,6 +4,7 @@ using Racing.Agents;
 using Racing.Collidables;
 using UnityEngine;
 
+
 namespace Racing {
 	public class Racer : MonoBehaviour {
 
@@ -83,11 +84,12 @@ namespace Racing {
 			agent.enableInput();
 		}
 
+		/*		
 		void OnCollisionEnter(Collision other) {
 			
 			if (other.gameObject.GetComponent<RaceCollidable>() != null) {
 				RaceCollidable collidable = other.gameObject.GetComponent<RaceCollidable>();
-				collidable.applyAllEffects(this);
+				//collidable.applyAllEffects(this);
 			} else if (other.relativeVelocity.magnitude > 3) {
 				GameObject explosion = GameObject.Instantiate(collisionExplosion);
 				explosion.transform.position = transform.position;
@@ -95,6 +97,8 @@ namespace Racing {
 				explosion.transform.rotation = transform.rotation;
 			}
 		}
+
+		*/
 
 		//Utility methods
 		private float getForwardSpeed() {
