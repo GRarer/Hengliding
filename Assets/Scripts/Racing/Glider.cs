@@ -11,15 +11,15 @@ public class Glider : MonoBehaviour {
 	
 
 	private Rigidbody rb;
-	public float thrust = 0;
-	public float el = 0.002f;
-	public float ail = 0.002f;
-	public float rud = 0.000125f;
-	public float span = .7f;
-	public float cord = 0.3f;
+	private float Lda = 0.004f;
+	private float Mde = 0.002f;
+	private float Ndr = 0.002f;
+	private float span = .7f;
+	private float cord = 0.3f;
 	private float AR;
-	public float cl0 = 0.1f;
-	public float cd0 = 0.01f;
+	private float cl0 = 0.1f;
+	private float cd0 = 0.01f;
+	private float dragMult;
 	public float rho = 1.225f;
 	public bool rollYawCoupled = false;
 	public Text indicator;
@@ -27,31 +27,15 @@ public class Glider : MonoBehaviour {
 	private PhysicsAgent agent;
 	public GameObject collisionExplosion;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		rb = GetComponent<Rigidbody>();
 		rb.inertiaTensor = new Vector3(.1f,.1f,.1f);
 		rb.maxAngularVelocity = 5;
 		AR = Mathf.Pow(span, 2) / cord;
 		// agent = new PlayerPhysicsAgent(ail, el, rud, this);
-		rb.velocity = transform.forward*10;
+		//rb.velocity = transform.forward*10;
 	}
-	
-	// Update is called once per frame
-	// void Update () {
-	// 	if (Input.GetKey(KeyCode.Q)) {
-	// 		thrust += Time.deltaTime * 10;
-	// 		if (thrust > 200) {
-	// 			thrust = 200;
-	// 		}
-	// 	}
-	// 	if (Input.GetKey(KeyCode.E)) {
-	// 		thrust -= Time.deltaTime * 10;
-	// 		if (thrust < 0) {
-	// 			thrust = 0;
-	// 		}
-	// 	}
-	// }
 
 	void FixedUpdate() {
 		Vector3 u = agent.getInput();
@@ -66,7 +50,7 @@ public class Glider : MonoBehaviour {
 
 		Vector3 lift = aeroForce();
 		// Debug.Log(lift);
-		rb.AddForce(transform.forward * thrust + lift);
+		rb.AddForce(lift);
 		rb.AddForce(Vector3.down * 3.3f, ForceMode.Acceleration);
 
 		rb.AddTorque(transform.right * alpha / 15);
@@ -80,7 +64,9 @@ public class Glider : MonoBehaviour {
 
 		float alpha = Mathf.Atan2(-vel_b.y, vel_b.z);
 		// Debug.Log("Vel_b: " + vel_b.ToString());
-		indicator.text = string.Format("Airspeed: {0}\nAlpha: {1}\nAlpha Crit: {2}", vel_b.magnitude, alpha, alphaCrit);
+		if (indicator != null) {
+			indicator.text = string.Format("Airspeed: {0}\nAlpha: {1}\nAlpha Crit: {2}", vel_b.magnitude, alpha, alphaCrit);
+		}
 
 		float cl = 0;
 		float alphaMax = Mathf.PI / 6;
@@ -137,6 +123,23 @@ public class Glider : MonoBehaviour {
 		}
 	}
 
-	
-	
+	public void setRaceStats(float wingspan, float dragMultiplier, float mass, float controlAuthority) {
+		rb = GetComponent<Rigidbody>();
+		span = wingspan;
+		rb.mass = mass;
+		dragMult = dragMultiplier;
+		Lda = Lda * controlAuthority;
+		Mde = Mde * controlAuthority;
+		Ndr = Ndr * controlAuthority;
+	}
+
+	public float getLda() {
+		return Lda;
+	}
+	public float getMde() {
+		return Mde;
+	}
+	public float getNdr() {
+		return Ndr;
+	}
 }

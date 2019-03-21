@@ -6,14 +6,14 @@ namespace Racing.Agents {
 	public abstract class PhysicsAgent {
 
 		protected Glider glider;
-		protected float dMda;
-		protected float dNde;
-		protected float dLdr;
+		protected float Lda;
+		protected float Mde;
+		protected float Ndr;
 
-		public PhysicsAgent(float dMda, float dNde, float dLdr, Glider glider) {
-			this.dMda = dMda;
-			this.dNde = dNde;
-			this.dLdr = dLdr;
+		public PhysicsAgent(Glider glider) {
+			this.Lda = glider.getLda();
+			this.Mde = glider.getMde();
+			this.Ndr = glider.getNdr();
 			this.glider = glider;
 		}
 		public abstract Vector3 getInput();

@@ -8,7 +8,7 @@ namespace Racing.Agents{
         private Vector3 goal;
         private float Kp = .5f;
         private float Ky = .5f;
-        public AIPhysicsAgent(float dMda, float dNde, float dLdr, Glider glider, Vector3 goal) : base(dMda, dNde, dLdr, glider) {
+        public AIPhysicsAgent(Glider glider, Vector3 goal) : base(glider) {
             this.goal = goal;
         }
         public override Vector3 getInput() {
@@ -27,7 +27,7 @@ namespace Racing.Agents{
             axisH = Mathf.Min(Mathf.Abs(axisH), 1) * Mathf.Sign(axisH);
             axisV = Mathf.Min(Mathf.Abs(axisV), 1) * Mathf.Sign(axisV);
             Debug.Log(psi_d);
-            return new Vector3(axisV * dNde, axisH * dLdr, 0*axisH * dMda);
+            return new Vector3(axisV * Mde, axisH * Ndr, 0*axisH * Lda);
         }
     }
 }
