@@ -7,9 +7,6 @@ using Racing.Collidables;
 
 public class Glider : MonoBehaviour {
 
-	
-	
-
 	private Rigidbody rb;
 	private float Lda = 0.004f;
 	private float Mde = 0.002f;
@@ -24,7 +21,7 @@ public class Glider : MonoBehaviour {
 	public bool rollYawCoupled = false;
 	public Text indicator;
 	private float alphaCrit = Mathf.PI / 12;
-	private PhysicsAgent agent;
+	private Agent agent;
 	public GameObject collisionExplosion;
 
     // Use this for initialization
@@ -101,11 +98,13 @@ public class Glider : MonoBehaviour {
 		return force;
 	}
 
-	public void setAgent(PhysicsAgent agent) {
+	public void setAgent(Agent agent) {
 		this.agent = agent;
 	}
 	
-	 
+	public Agent getAgent() {
+		return agent;
+	}
 	void OnCollisionEnter(Collision other) {
 			if (other.relativeVelocity.magnitude > 3) {
 				GameObject explosion = GameObject.Instantiate(collisionExplosion);

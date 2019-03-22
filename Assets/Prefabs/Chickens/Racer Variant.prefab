@@ -28,6 +28,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: smoothchicken
       objectReference: {fileID: 0}
+    - target: {fileID: 100036, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100030, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100032, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 400036, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.03
@@ -88,6 +132,26 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e4417f080e09e5f46a3738d04864ac6d, type: 2}
+    - target: {fileID: 100028, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100040, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 13700016, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
       propertyPath: m_Bones.Array.data[0]
       value: 
@@ -484,6 +548,26 @@ PrefabInstance:
       propertyPath: m_RootBone
       value: 
       objectReference: {fileID: 6394229289317762708}
+    - target: {fileID: 100024, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100038, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100034, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e24529cff2bbbad4ea6d0542484d7c8f, type: 3}
 --- !u!4 &6394229289317762750 stripped
@@ -557,6 +641,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Racer Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 585573752249095990, guid: 9338d3fdf4e877044ae191e77a11b3b0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8279269569837443053, guid: 9338d3fdf4e877044ae191e77a11b3b0,
         type: 3}
@@ -659,10 +748,19 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 967875472, guid: 9338d3fdf4e877044ae191e77a11b3b0, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1065896974555071807, guid: 9338d3fdf4e877044ae191e77a11b3b0,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065896974555071807, guid: 9338d3fdf4e877044ae191e77a11b3b0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5932365475247129724, guid: 9338d3fdf4e877044ae191e77a11b3b0,
         type: 3}
