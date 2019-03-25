@@ -22,7 +22,6 @@ namespace Raising.Interaction {
 			if (under != null) {
 				if (under.GetComponent<Bath>() != null && under.GetComponent<Bath>().filled == false) {
 					if (this.filled) {
-						Debug.Log("emptying bucket");
 						Bath bath = under.GetComponent<Bath>();
 						bath.fill();
 						this.unFill();
@@ -30,7 +29,6 @@ namespace Raising.Interaction {
 				}
 				if (under.GetComponent<WaterSource>() != null) {
 					if (!this.filled) {
-						Debug.Log("filling bucket");
 						WaterSource waterSource = under.GetComponent<WaterSource>();
 						this.fill();
 					}
