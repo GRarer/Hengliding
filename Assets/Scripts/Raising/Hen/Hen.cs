@@ -65,8 +65,10 @@ namespace Raising {
 		private IEnumerator wander() {
 			//TODO change direction once we fix the fact that hen models are currently sideways relative to their gameobject forward vector
 			yield return new WaitForSeconds(Random.Range(0.5f, 2f));
-			transform.Rotate(new Vector3(0, Random.Range(0, 359), 0), Space.World);
+			//transform.Rotate(new Vector3(0, Random.Range(0, 359), 0), Space.World);
+			GetComponent<Rigidbody>().angularVelocity += new Vector3(0,3 * Random.Range(0f, 1f),0);
 			yield return new WaitForSeconds(Random.Range(0.1f, 0.5f));
+			GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 			GetComponent<Rigidbody>().velocity += transform.forward * -1 * 0.5f;
 			yield return new WaitForSeconds(Random.Range(1f, 2f));
 			GetComponent<Rigidbody>().velocity += new Vector3(0, 0, 0);
@@ -86,6 +88,7 @@ namespace Raising {
 			//TODO GUI for stats
 
 			StartCoroutine(size.increase(1));
+
 			Destroy(foodItem.gameObject);
 		}
 
