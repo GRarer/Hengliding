@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 namespace Racing.Collidables {
-	public class Thermal : Continuous {
+	public class Thermal : Continuous, Boost {
 		public override void applySpecificEffect(Glider glider) {
 			boost(glider);
 		}
