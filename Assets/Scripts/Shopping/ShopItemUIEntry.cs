@@ -1,84 +1,72 @@
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ShopItemUIEntry : AnimatedUIElement {
+public class ShopItemUIEntry : Toggle {
 
-    public Text itemNameText;
+
     public Text itemCostText;
-    public MeshRenderer itemIcon;
+    public Image itemIcon;
+    public Image selectionRing;
+    public bool isHighlighted;
+    
     public bool isSelected;
-    public float itemRotSpeed = 5;
+    public float itemBounceSpeed = 5;
     public AnimationCurve itemImageBounce;
     public float bounceHeight;
     Vector3 initialIconPosition;
     float progress = 0;
 
-    bool isSpinning;
-    float spinProgress = 0;
-
     public AnimationCurve scaleOnClickCurve;
-    public AnimationCurve moveYOnClickCurve;
-    public AnimationCurve spinIconOnBuyCurve;
 
-    public void Initialize(Item item, int currentPlayerMoney) {
-        
-        itemNameText.text = item.name;
+    Shop shop;
+    Item item;
+
+    public void Initialize(Item i, int currentPlayerMoney) {
+        item = i;
         itemCostText.text = "$" + item.cost;
-        itemIcon.mesh     = item.itemMesh;
+        itemIcon.sprite     = item.itemSprite;
+        //itemIcon.transform.localScale = new Vector3(item.itemUIScaleFactor, item.itemUIScaleFactor, item.itemUIScaleFactor);
+
 
         if (item.CanAfford(currentPlayerMoney)) {
             itemCostText.color = Color.red;
         }
 
-        initialIconPosition = itemIcon.transform.position;
+        initialIconPosition = itemIcon.transform.localPosition;
+
+        shop = GameObject.FindObjectOfType<Shop>();
     }
 
     void Update() {
-        if (isSelected) {
+        if (EventSystem.current && EventSystem.current.currentSelectedGameObject) {
+//            Debug.Log(EventSystem.current.currentSelectedGameObject.name);
+        }
 
-            if (isSpinning) {
-                spinProgress += Time.deltaTime;
-                if (spinProgress > 0) {
-                    spinProgress = 0;
-                    isSpinning = false;
-                }
-            }
+        //isHighlighted = IsHighlighted(null);
+        //isSelected = isSelected || IsPressed(); // if the user clicks on this, we select it, but we don't deselect it on mouse up
+        if (IsPressed()) {
+            //EventSystem.current.SetSelectedGameObject(this.gameObject);
+            shop.SelectItem(item, this);
+        }
+        if (EventSystem.current) {
+            //isSelected = EventSystem.current.currentSelectedGameObject == this.gameObject;
+        }
+
+        if (isSelected) {
             
+            Select();
+
             progress += Time.deltaTime;
-            if (progress > 0) progress = 0;
+            if (progress > 1) progress = 0;
             
-            // rotate the item model
-            itemIcon.transform.rotation = 
-                itemIcon.transform.rotation 
-                * Quaternion.Euler(0, 
-                    Time.deltaTime 
-                    * (itemRotSpeed + isSpinning ? spinIconOnBuyCurve.Evaluate(spinProgress) : 0)
-                    , 0);
             // bounce the object up and down
-            itemIcon.transform.position = initialIconPosition + Vector3.up * bounceHeight * itemImageBounce.Evaluate(progress * itemRotSpeed);
+            float bounce = itemImageBounce.Evaluate(progress * itemBounceSpeed);
+            itemIcon.transform.localPosition = initialIconPosition + Vector3.up * bounceHeight * bounce;
+        } else {
+            itemIcon.transform.localPosition = initialIconPosition;
         }
     }
 
-    public override void OnSelect() {
-        
-        isSelected = true;
-        progress = 0;
-
-        // TODO: play sound effect
-    }
-    
-    public override void OnDeselect() {
-        
-        isSelected = false;
-    }
-
-    public void BuyItem() {
-
-        // TODO Play sound effect
-
-        // Feedback from buying item
-        // Spin the item icon:
-        spinProgress = 0;
-        isSpinning = true;
-    }
 }

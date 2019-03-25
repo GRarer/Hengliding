@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Utilities;
 
 namespace Raising {
@@ -40,10 +41,11 @@ namespace Raising {
 		}
 
 		void OnMouseDown() {
-			//TODO GUI for stats
-			Debug.Log("Speed: " + speed.value);
-			StartCoroutine(speed.increase(1));
-
+			if (!EventSystem.current.IsPointerOverGameObject()) {
+				//TODO GUI for stats
+				Debug.Log("Speed: " + speed.value);
+				StartCoroutine(speed.increase(1));
+			}
 		}
 	}
 
