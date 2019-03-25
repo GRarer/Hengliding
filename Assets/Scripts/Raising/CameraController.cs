@@ -55,7 +55,7 @@ public class CameraController : MonoBehaviour {
 
 		//Reset everything by pressing the E button
 		if (Input.GetAxis("E") > 0) {
-			resetCamera();
+			// resetCamera();
 		}
 
 		//BEGINNING OF SETUP SECTION
@@ -83,7 +83,7 @@ public class CameraController : MonoBehaviour {
 		}
 
 		if (Input.GetAxis("AltSelect") > 0) {
-			rotationMomentum += new Vector2((Input.mousePosition.x - lastMousePos.x) * rotateSpeed, (Input.mousePosition.y - lastMousePos.y) * rotateSpeed);
+			// rotationMomentum += new Vector2((Input.mousePosition.x - lastMousePos.x) * rotateSpeed, (Input.mousePosition.y - lastMousePos.y) * rotateSpeed);
 		}
 		if (Mathf.Abs(rotationMomentum.x) > (rotMomentumDecayLin + rotMomentumDecayExp * rotationMomentum.x) * Time.deltaTime) {
 			rotationMomentum.x -= (rotMomentumDecayLin + rotMomentumDecayExp * rotationMomentum.x * Mathf.Sign(rotationMomentum.x)) * Time.deltaTime * Mathf.Sign(rotationMomentum.x);

@@ -63,7 +63,6 @@ namespace Raising {
 			StartCoroutine(wander());
 		}
 		private IEnumerator wander() {
-			//TODO change direction once we fix the fact that hen models are currently sideways relative to their gameobject forward vector
 			yield return new WaitForSeconds(Random.Range(0.5f, 2f));
 			//transform.Rotate(new Vector3(0, Random.Range(0, 359), 0), Space.World);
 			GetComponent<Rigidbody>().angularVelocity += new Vector3(0,3 * Random.Range(0f, 1f),0);
