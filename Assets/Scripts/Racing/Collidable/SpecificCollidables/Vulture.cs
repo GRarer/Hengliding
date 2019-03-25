@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 namespace Racing.Collidables {
-	public class Vulture : Hinderance {
+	public class Vulture : Instantaneous {
 
 		private const float BOOST_STRENGTH = 0.5f;
 
