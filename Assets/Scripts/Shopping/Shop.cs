@@ -49,14 +49,14 @@ public class Shop : MonoBehaviour {
         
         CameraController cam = GameObject.FindObjectOfType<CameraController>();
         if (cam) {
-            cam.enabled = false;
+            //cam.enabled = false;
         }
     }
 
     void CloseShop() {
         CameraController cam = GameObject.FindObjectOfType<CameraController>();
         if (cam) {
-            cam.enabled = true;
+            //cam.enabled = true;
         }
 
         foreach(Transform child in itemsHolder.transform) {
