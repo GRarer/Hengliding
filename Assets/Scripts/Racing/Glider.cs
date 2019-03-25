@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Racing.Agents;
 using Racing.Collidables;
 
 public class Glider : MonoBehaviour {
@@ -22,6 +23,8 @@ public class Glider : MonoBehaviour {
 	public float rho = 1.225f;
 	public bool rollYawCoupled = false;
 	public Text indicator;
+	private float alphaCrit = Mathf.PI / 12;
+	private PhysicsAgent agent;
 	public GameObject collisionExplosion;
 
 	// Use this for initialization
@@ -30,61 +33,44 @@ public class Glider : MonoBehaviour {
 		rb.inertiaTensor = new Vector3(.1f,.1f,.1f);
 		rb.maxAngularVelocity = 5;
 		AR = Mathf.Pow(span, 2) / cord;
-		Cursor.lockState = CursorLockMode.Locked;
+		// agent = new PlayerPhysicsAgent(ail, el, rud, this);
+		rb.velocity = transform.forward*10;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (Input.GetKey(KeyCode.Q)) {
-			thrust += Time.deltaTime * 10;
-			if (thrust > 200) {
-				thrust = 200;
-			}
-		}
-		if (Input.GetKey(KeyCode.E)) {
-			thrust -= Time.deltaTime * 10;
-			if (thrust < 0) {
-				thrust = 0;
-			}
-		}
-		
-		
-	}
+	// void Update () {
+	// 	if (Input.GetKey(KeyCode.Q)) {
+	// 		thrust += Time.deltaTime * 10;
+	// 		if (thrust > 200) {
+	// 			thrust = 200;
+	// 		}
+	// 	}
+	// 	if (Input.GetKey(KeyCode.E)) {
+	// 		thrust -= Time.deltaTime * 10;
+	// 		if (thrust < 0) {
+	// 			thrust = 0;
+	// 		}
+	// 	}
+	// }
 
 	void FixedUpdate() {
-		if (Input.GetMouseButtonUp(0)) {
-			Cursor.lockState = CursorLockMode.Locked;
-		}
-		if (Input.GetMouseButtonDown(0)) {
-			Cursor.lockState = CursorLockMode.None;
-			Cursor.visible = true;
-		}
-		if (Input.GetMouseButton(0)) {
-			float axisH = 2*(Input.mousePosition.x - Screen.width/2)/Screen.width;
-			float axisV = 2*(Input.mousePosition.y - Screen.height/2)/Screen.height;
-			axisH = Mathf.Min(Mathf.Abs(axisH), 1) * Mathf.Sign(axisH);
-			axisV = Mathf.Min(Mathf.Abs(axisV), 1) * Mathf.Sign(axisV);
-			if (rollYawCoupled) {
-				rb.AddTorque((-transform.forward * ail * axisH - transform.up * rud * axisH + transform.right * el * axisV) * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
-			} else {
-				rb.AddTorque((-transform.forward * ail * axisH + transform.right * el * axisV) * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
-			}
-		}
-		if (!rollYawCoupled) {
-			float rudder = 0;
-			if (Input.GetKey(KeyCode.A)) {
-				rudder -= 1;
-			}
-			if (Input.GetKey(KeyCode.D)) {
-				rudder += 1;
-			}
-			rb.AddTorque(transform.up * rud * rudder * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
-		}
-		
+		Vector3 u = agent.getInput();
+		rb.AddTorque((-transform.forward * u.z + transform.up * u.y  + transform.right * u.x) * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
+
+		Matrix4x4 R_eb = Matrix4x4.Rotate(rb.rotation);
+		Vector3 vel_b = R_eb.inverse.MultiplyVector(rb.velocity);
+		float alpha = Mathf.Atan2(-vel_b.y, vel_b.z);
+
+		float alphaErr = 0 - alpha;
+		// Debug.Log(alphaErr);
 
 		Vector3 lift = aeroForce();
+		// Debug.Log(lift);
 		rb.AddForce(transform.forward * thrust + lift);
-		rb.AddForce(Vector3.down * 4.9f, ForceMode.Acceleration);
+		rb.AddForce(Vector3.down * 3.3f, ForceMode.Acceleration);
+
+		rb.AddTorque(transform.right * alpha / 15);
+		rb.AddTorque(transform.forward * vel_b.x / 20);
 	}
 
 	Vector3 aeroForce() {
@@ -94,10 +80,9 @@ public class Glider : MonoBehaviour {
 
 		float alpha = Mathf.Atan2(-vel_b.y, vel_b.z);
 		// Debug.Log("Vel_b: " + vel_b.ToString());
-		indicator.text = string.Format("Airspeed: {0}\nAlpha: {1}", vel_b.magnitude, alpha);
+		indicator.text = string.Format("Airspeed: {0}\nAlpha: {1}\nAlpha Crit: {2}", vel_b.magnitude, alpha, alphaCrit);
 
 		float cl = 0;
-		float alphaCrit = Mathf.PI / 12;
 		float alphaMax = Mathf.PI / 6;
 		
 		if (Mathf.Abs(alpha) <= alphaCrit) {
@@ -130,6 +115,9 @@ public class Glider : MonoBehaviour {
 		return force;
 	}
 
+	public void setAgent(PhysicsAgent agent) {
+		this.agent = agent;
+	}
 	
 	 
 	void OnCollisionEnter(Collision other) {

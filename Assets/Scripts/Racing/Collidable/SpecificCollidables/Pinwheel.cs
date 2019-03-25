@@ -1,5 +1,5 @@
 namespace Racing.Collidables {
-	public class Pinwheel : Hinderance {
+	public class Pinwheel : Instantaneous {
 
 		private static readonly float BOOST_STRENGTH = 2f;
 
