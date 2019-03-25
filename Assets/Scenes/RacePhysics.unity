@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 812930133}
   - component: {fileID: 812930132}
   - component: {fileID: 812930131}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -997,7 +997,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812930130}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.436974, y: -2.71, z: -1.72}
+  m_LocalPosition: {x: 6.67, y: -4.87, z: -1.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1604142274}
@@ -1973,7 +1973,7 @@ GameObject:
   - component: {fileID: 1604142273}
   - component: {fileID: 1604142272}
   - component: {fileID: 1604142271}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2497,6 +2497,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: vulture2
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 20084183d11b94545a47fd5f7d3c01dd, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 20084183d11b94545a47fd5f7d3c01dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 140.3
@@ -2574,7 +2578,7 @@ GameObject:
   - component: {fileID: 2124019281}
   - component: {fileID: 2124019280}
   - component: {fileID: 2124019279}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

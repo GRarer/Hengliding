@@ -14,7 +14,7 @@ namespace Racing {
 		public Text indicator;
 
 		void Start() {
-			Glider glider = GameObject.Instantiate(gliderPrefab, start.position - start.forward*10, start.rotation).GetComponent<Glider>();
+			Glider glider = GameObject.Instantiate(gliderPrefab, start.position - start.forward*20, start.rotation).GetComponent<Glider>();
 			glider.setAgent(new PlayerAgent(glider));
 			glider.GetComponent<Rigidbody>().velocity = glider.transform.forward * 10;
 			glider.transform.Find("Main Camera").gameObject.SetActive(true);
