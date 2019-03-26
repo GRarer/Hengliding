@@ -22,6 +22,7 @@ namespace Racing {
 			if (other.gameObject.GetComponent<Glider>() != null) {
 				if (other.gameObject.GetComponent<Glider>().getAgent() is PlayerAgent) {
 					Debug.Log("Player reaches end");
+					raceControl.endRace();
 					//SceneManager.LoadScene("Raise");
 				}
 			}
