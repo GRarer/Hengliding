@@ -10,7 +10,6 @@ namespace Racing.Collidables {
 			Debug.Log("Collision");
 			applyGeneralEffect(glider);
 			applySpecificEffect(glider);
-			Destroy(this.gameObject);
 		}
 		
 		//Applies effects common to all hinderances or boosts
