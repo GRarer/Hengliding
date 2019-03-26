@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8606223213238424465}
   - component: {fileID: 8606223213238424466}
   m_Layer: 0
-  m_Name: FoodItem
+  m_Name: WaterItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Mega Cookie
-  description: Food description
-  cost: 100
-  itemSprite: {fileID: 21300000, guid: 52456bf0baece5d4cb242bba91926798, type: 3}
+  description: Watering item description
+  cost: 50
+  itemSprite: {fileID: 21300000, guid: cb366cc8e78501e49bf43d2e762ac4d3, type: 3}
   itemUIScaleFactor: 1
