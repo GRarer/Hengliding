@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class WindLine : MonoBehaviour {
 
-	public AnimationCurve motion;
-	float startTime;
 
 	// Start is called before the first frame update
 	void Start() {
-		startTime = Time.time;
+		
 	}
 
 	// Update is called once per frame
 	void Update() {
-		float currTime = Time.time - startTime;
-		gameObject.transform.position = gameObject.transform.position + new Vector3(motion.Evaluate(currTime), 0, 0);
+		transform.position = transform.position + new Vector3(0, 10, 0) * Time.deltaTime;
+		if(Random.Range(0.0f, 1.0f) < 0.002) {
+			GetComponentInChildren<Animator>().SetTrigger("Twirl");
+		}
 	}
 }

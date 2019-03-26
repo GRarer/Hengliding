@@ -26,7 +26,7 @@ namespace Racing.Agents{
             float axisV = Kp * theta_e;
             axisH = Mathf.Min(Mathf.Abs(axisH), 1) * Mathf.Sign(axisH);
             axisV = Mathf.Min(Mathf.Abs(axisV), 1) * Mathf.Sign(axisV);
-            Debug.Log(psi_d);
+            // Debug.Log(psi_d);
             return new Vector3(axisV * dNde, axisH * dLdr, 0*axisH * dMda);
         }
     }
