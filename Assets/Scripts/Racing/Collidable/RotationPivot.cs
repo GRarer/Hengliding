@@ -7,7 +7,7 @@ namespace Racing.Collidables {
     public class RotationPivot : MonoBehaviour
     {
 
-        public float rotationSpeed = 10000f;
+        public float rotationSpeed = 360f;
 
         // Start is called before the first frame update
         void Start()
