@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 776358546}
   - component: {fileID: 776358545}
   - component: {fileID: 776358544}
+  - component: {fileID: 1110536765}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -94,7 +95,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -140,6 +141,25 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!95 &1110536765
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776358542}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fad2b84f0dee51341bb7006f289555e1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &837928984
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,9 +780,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsForSale:
   - {fileID: 8606223213238424466, guid: 4578a7f754e53074eaa11d95347261be, type: 3}
-  - {fileID: 8606223213238424466, guid: 3a7019e0b1c56d24782f5e899fc62f63, type: 3}
-  - {fileID: 8606223213238424466, guid: 03aa9cace1793564f8c6da2ff7040a5e, type: 3}
+  - {fileID: 8606223213238424466, guid: 3784f37303f14a441b49327afc86001a, type: 3}
   - {fileID: 8606223213238424466, guid: ff6719439c286814c929cb626c975336, type: 3}
+  - {fileID: 8606223213238424466, guid: 5eca8a1bfdd64dd4892a8cf1a9c865ef, type: 3}
+  - {fileID: 8606223213238424466, guid: 03aa9cace1793564f8c6da2ff7040a5e, type: 3}
+  - {fileID: 8606223213238424466, guid: 3a7019e0b1c56d24782f5e899fc62f63, type: 3}
+  - {fileID: 8606223213238424466, guid: 79e1366fb15871346b928bb17927d5e0, type: 3}
+  - {fileID: 8606223213238424466, guid: 598cd7de5a831594eb690cd7c5d23062, type: 3}
+  - {fileID: 8606223213238424466, guid: f39e1f62ebd3fdd459b54bbbad33f8ad, type: 3}
   itemsHolder: {fileID: 950259188793503772}
   shopItemUIEntryTemplate: {fileID: 493493682183102956, guid: ccf60091840d4cc42a42d62df0d75c6b,
     type: 3}

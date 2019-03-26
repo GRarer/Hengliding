@@ -24,6 +24,16 @@ public class ShopItemUIEntry : Toggle {
     Item item;
 
     public void Initialize(Item i, int currentPlayerMoney) {
+
+        // ideally these wouldn't be necessary but there is a Unity inspector 
+        // bug where classes that inherit from Selectable do not show all member variables
+        if (itemCostText == null) {
+            itemCostText = transform.GetComponentInChildren<Text>();
+        }
+        if (itemIcon == null) {
+            itemIcon = transform.Find("Icon").GetComponent<Image>();
+        }
+
         item = i;
         itemCostText.text = "$" + item.cost;
         itemIcon.sprite     = item.itemSprite;
