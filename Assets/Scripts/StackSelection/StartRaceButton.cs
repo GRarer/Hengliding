@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class StartRaceButton : MonoBehaviour
 {
+
+    public LevelSelectDropdown levelSelectDropdown;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,8 +17,12 @@ public class StartRaceButton : MonoBehaviour
     }
 
     public void startRace() {
-        Debug.Log("Start");
-        SceneManager.LoadScene("Race");
+        string scene = levelSelectDropdown.getSelectedRaceScene();
+
+        if (scene != null) {
+            Debug.Log("Start");
+            SceneManager.LoadScene(scene);
+        }
     }
 
     public void updateButton() {
