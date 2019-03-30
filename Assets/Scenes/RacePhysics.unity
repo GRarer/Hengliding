@@ -997,7 +997,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812930130}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.67, y: -4.87, z: -1.72}
+  m_LocalPosition: {x: 6.67, y: -4.87, z: -3.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1604142274}
@@ -1661,7 +1661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goal: {fileID: 174662000}
   start: {fileID: 1204752115}
-  numAI: 3
+  numAI: 4
   gliderPrefab: {fileID: 7791143779684347089, guid: c555d35f1806120428c0fe776d93691c,
     type: 3}
   indicator: {fileID: 971863099}
