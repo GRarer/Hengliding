@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Racing.Agents;
 
 namespace Racing {
@@ -16,12 +17,13 @@ namespace Racing {
 
 		}
 
-		void OnCollisionEnter(Collision other) {
+		void OnTriggerEnter(Collider other) {
 			Debug.Log("colliding");
-			if (other.gameObject.GetComponent<Racer>() != null) {
-				if (other.gameObject.GetComponent<Racer>().agent is PlayerAgent) {
+			if (other.gameObject.GetComponent<Glider>() != null) {
+				if (other.gameObject.GetComponent<Glider>().getAgent() is PlayerAgent) {
 					Debug.Log("Player reaches end");
-					raceControl.chickenAtEnd();
+					raceControl.endRace();
+					//SceneManager.LoadScene("Raise");
 				}
 			}
 		}
