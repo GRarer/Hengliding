@@ -21,6 +21,8 @@ namespace Racing {
 		enum states {COUNTDOWN, INPROGRESS, END};
 		private states state = states.COUNTDOWN;
 
+		public int reward = 10000;
+
 		void Start() {
 			winScreen.enabled = false;
 			gliders = new GameObject[numAI+1];
@@ -77,6 +79,7 @@ namespace Racing {
 			foreach(GameObject glider in gliders) {
 				glider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
 			}
+			InventoryPersist.setMoney(InventoryPersist.getMoney() + reward);
 		}
 	}
 }
