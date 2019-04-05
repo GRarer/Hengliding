@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1744,6 +1744,7 @@ MonoBehaviour:
   numAI: 4
   gliderPrefab: {fileID: 7791143779684347089, guid: c555d35f1806120428c0fe776d93691c,
     type: 3}
+  camPrefab: {fileID: 637891103, guid: 4369344216cbaf34992ad3ab98854a56, type: 3}
   indicator: {fileID: 971863099}
   CountDown: {fileID: 1901504858}
   winScreen: {fileID: 1104613170}

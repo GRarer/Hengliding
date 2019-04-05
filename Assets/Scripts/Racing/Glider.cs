@@ -23,6 +23,7 @@ public class Glider : MonoBehaviour {
 	private float alphaCrit = Mathf.PI / 12;
 	private Agent agent;
 	public GameObject collisionExplosion;
+	public bool isStalling = false;
 
     // Use this for initialization
     void Start () {
@@ -64,6 +65,7 @@ public class Glider : MonoBehaviour {
 		if (indicator != null) {
 			indicator.text = string.Format("Airspeed: {0}\nAlpha: {1}\nAlpha Crit: {2}", vel_b.magnitude, alpha, alphaCrit);
 		}
+		isStalling = Mathf.Abs(alpha) > alphaCrit || vel_b.z < 8;
 
 		float cl = 0;
 		float alphaMax = Mathf.PI / 6;
