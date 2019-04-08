@@ -28,7 +28,7 @@ public class Shop : MonoBehaviour {
     }
 
     void Initialize() {
-
+        SetFundsText();
         CreateItemList();
     }
 
@@ -38,19 +38,29 @@ public class Shop : MonoBehaviour {
 
         foreach (Item i in itemsForSale) {
             ShopItemUIEntry uiEntry = GameObject.Instantiate(shopItemUIEntryTemplate, itemsHolder.transform).GetComponent<ShopItemUIEntry>();
-            uiEntry.Initialize(i, playerFunds);
+            uiEntry.Initialize(i);
             //uiEntry.gameObject.transform.parent = itemsHolder.transform;
         }
     }
 
+    void SetCanBuyEachItem() {
+        foreach (Transform t in itemsHolder.transform) {
+            t.GetComponent<ShopItemUIEntry>().SetTextColorOnAffordability();
+        }
+    }
+
     void OpenShop() {
-        playerFundsText.text = "Funds: $" + GetPlayerMoney();
         Initialize();
         
         CameraController cam = GameObject.FindObjectOfType<CameraController>();
         if (cam) {
             //cam.enabled = false;
         }
+    }
+
+    void SetFundsText() {
+
+        playerFundsText.text = "Funds: $" + GetPlayerMoney();
     }
 
     void CloseShop() {
@@ -72,11 +82,12 @@ public class Shop : MonoBehaviour {
         //Pay(selectedItem);
 
         if (selectedItem.CanAfford(InventoryPersist.getMoney())) {
-            //play "purchase made" sound
+            // TODO play "purchase made" sound
             InventoryPersist.setMoney(InventoryPersist.getMoney() - selectedItem.cost);
             selectedItem.UseItem();
+            SetFundsText();
         } else {
-            // play "purchase failed" sound, if wanted
+            // TODO play "purchase failed" sound, if wanted
         }
         
     }
