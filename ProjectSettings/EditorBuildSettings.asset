@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RacePhysics.unity
     guid: 5ea96cf54baa0794a9a2ddb6d042bf3d
+  - enabled: 1
+    path: Assets/Scenes/Raise.unity
+    guid: 30898962d9c7885419a5f2ef96c4b64f
   m_configObjects: {}

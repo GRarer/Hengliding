@@ -24,7 +24,7 @@ public class Shop : MonoBehaviour {
     }
 
     int GetPlayerMoney() {
-        return 0;
+        return InventoryPersist.getMoney();
     }
 
     void Initialize() {
@@ -64,15 +64,20 @@ public class Shop : MonoBehaviour {
         }
     }
 
-    public void Pay(int cost) {
-        // TODO subtract money from the player's wallet
+    public void Pay(Item cost) {
     }
 
     public void BuySelectedItem() {
 
-        Pay(selectedItem.cost);
+        //Pay(selectedItem);
 
-        // TODO Play sound
+        if (selectedItem.CanAfford(InventoryPersist.getMoney())) {
+            //play "purchase made" sound
+            InventoryPersist.setMoney(InventoryPersist.getMoney() - selectedItem.cost);
+            selectedItem.UseItem();
+        } else {
+            // play "purchase failed" sound, if wanted
+        }
         
     }
 
