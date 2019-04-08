@@ -17,10 +17,13 @@ namespace Racing {
 		public Text indicator;
 		public Text CountDown;
 		public Image winScreen;
+		public Image loseScreen;
 		private float timer = 3;
 		private GameObject[] gliders;
 		enum states {COUNTDOWN, INPROGRESS, END};
 		private states state = states.COUNTDOWN;
+
+		public int reward = 10000;
 
 		void Start() {
 			winScreen.enabled = false;
@@ -73,12 +76,22 @@ namespace Racing {
 			}
 		}
 
-		public void endRace() {
-			winScreen.enabled = true;
+		public void endRace(bool didWin) {
+			
+			if (didWin) {
+				winScreen.enabled = true;
+			} else {
+				loseScreen.enabled = true;
+			}
+
+
 			state = states.END;
 			timer = 5;
 			foreach(GameObject glider in gliders) {
 				glider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+			}
+			if (didWin) {
+				InventoryPersist.setMoney(InventoryPersist.getMoney() + reward);
 			}
 		}
 	}

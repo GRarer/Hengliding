@@ -113,12 +113,14 @@ public class Glider : MonoBehaviour {
 				explosion.transform.position = transform.position;
 				explosion.transform.parent = transform; // setting the parent here instead of during instantiation to avoid any potential scaling issues
 				explosion.transform.rotation = transform.rotation;
+
+				// lose the race
+				GameObject.FindObjectOfType<Racing.RaceControl>().GetComponent<Racing.RaceControl>().endRace(false);
 			}
 	}
 
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.GetComponent<RaceCollidable>() != null) {
-				Debug.Log("Collidable found");
 				RaceCollidable collidable = other.gameObject.GetComponent<RaceCollidable>();
 				collidable.applyAllEffects(this);
 		}

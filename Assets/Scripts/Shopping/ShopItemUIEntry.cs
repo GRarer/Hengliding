@@ -23,7 +23,7 @@ public class ShopItemUIEntry : Toggle {
     Shop shop;
     Item item;
 
-    public void Initialize(Item i, int currentPlayerMoney) {
+    public void Initialize(Item i) {
 
         // ideally these wouldn't be necessary but there is a Unity inspector 
         // bug where classes that inherit from Selectable do not show all member variables
@@ -39,14 +39,20 @@ public class ShopItemUIEntry : Toggle {
         itemIcon.sprite     = item.itemSprite;
         //itemIcon.transform.localScale = new Vector3(item.itemUIScaleFactor, item.itemUIScaleFactor, item.itemUIScaleFactor);
 
-
-        if (item.CanAfford(currentPlayerMoney)) {
-            itemCostText.color = Color.red;
-        }
+        SetTextColorOnAffordability();
 
         initialIconPosition = itemIcon.transform.localPosition;
 
         shop = GameObject.FindObjectOfType<Shop>();
+    }
+
+    public void SetTextColorOnAffordability() {
+
+        if (!item.CanAfford(InventoryPersist.getMoney())) {
+            itemCostText.color = Color.red;
+        } else {
+            itemCostText.color = Color.red;
+        }
     }
 
     void Update() {

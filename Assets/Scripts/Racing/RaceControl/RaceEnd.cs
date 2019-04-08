@@ -19,11 +19,15 @@ namespace Racing {
 
 		void OnTriggerEnter(Collider other) {
 			Debug.Log("colliding");
-			if (other.gameObject.GetComponent<Glider>() != null) {
-				if (other.gameObject.GetComponent<Glider>().getAgent() is PlayerAgent) {
+			Glider g = other.gameObject.GetComponent<Glider>();
+			if (g != null) {
+				if (g.getAgent() is PlayerAgent) {
 					Debug.Log("Player reaches end");
-					raceControl.endRace();
+					raceControl.endRace(true);
 					//SceneManager.LoadScene("Raise");
+				} else {
+					Debug.Log("Player loses");
+					raceControl.endRace(false);
 				}
 			}
 		}
