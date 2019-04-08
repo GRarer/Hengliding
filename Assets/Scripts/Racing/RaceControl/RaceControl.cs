@@ -13,6 +13,7 @@ namespace Racing {
 		public Transform start;
 		public int numAI = 1;
 		public GameObject gliderPrefab;
+		public GameObject camPrefab;
 		public Text indicator;
 		public Text CountDown;
 		public Image winScreen;
@@ -28,7 +29,9 @@ namespace Racing {
 			gliders = new GameObject[numAI+1];
 			Glider glider = GameObject.Instantiate(gliderPrefab, start.position - start.forward*20, start.rotation).GetComponent<Glider>();
 			glider.setAgent(new PlayerAgent(glider));
-			glider.transform.Find("Main Camera").gameObject.SetActive(true);
+			//glider.transform.Find("Main Camera").gameObject.SetActive(true);
+			GameObject cam = GameObject.Instantiate(camPrefab, glider.transform.position, glider.transform.rotation);
+			cam.GetComponent<CameraControl>().target = glider.transform;
 			glider.indicator = indicator;
 			glider.setRaceStats(SelectedRaceParameters.wingspan, SelectedRaceParameters.dragMultiplier, SelectedRaceParameters.mass, SelectedRaceParameters.controlAuthority);
 			glider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
