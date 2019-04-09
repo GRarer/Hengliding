@@ -63,7 +63,10 @@ public class Glider : MonoBehaviour {
 		float alpha = Mathf.Atan2(-vel_b.y, vel_b.z);
 		// Debug.Log("Vel_b: " + vel_b.ToString());
 		if (indicator != null) {
-			indicator.text = string.Format("Airspeed: {0}\nAlpha: {1}\nAlpha Crit: {2}", vel_b.magnitude, alpha, alphaCrit);
+			string indicatorText = "Airspeed\n" + vel_b.magnitude;
+			indicatorText = isStalling ? "\nSTALL. GO FASTER." : indicatorText;
+			indicator.color = isStalling ? Color.red : Color.black;
+			indicator.text = indicatorText;
 		}
 		isStalling = Mathf.Abs(alpha) > alphaCrit || vel_b.z < 8;
 
@@ -113,12 +116,14 @@ public class Glider : MonoBehaviour {
 				explosion.transform.position = transform.position;
 				explosion.transform.parent = transform; // setting the parent here instead of during instantiation to avoid any potential scaling issues
 				explosion.transform.rotation = transform.rotation;
+
+				// lose the race
+				GameObject.FindObjectOfType<Racing.RaceControl>().GetComponent<Racing.RaceControl>().endRace(false);
 			}
 	}
 
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.GetComponent<RaceCollidable>() != null) {
-				Debug.Log("Collidable found");
 				RaceCollidable collidable = other.gameObject.GetComponent<RaceCollidable>();
 				collidable.applyAllEffects(this);
 		}

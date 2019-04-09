@@ -97,6 +97,11 @@ namespace Raising {
 			bath.unFill();
 		}
 
+        public void finishExercise(Treadmill treadmill)
+        {
+            StartCoroutine(fitness.increase(1));
+
+        }
 
 		//returns the closest T item within the Hen's awareness sphere, or null if there is no such food item
 		public T findNearbyItem<T>() where T : MonoBehaviour {
