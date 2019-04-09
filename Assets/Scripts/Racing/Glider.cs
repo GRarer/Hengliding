@@ -63,7 +63,10 @@ public class Glider : MonoBehaviour {
 		float alpha = Mathf.Atan2(-vel_b.y, vel_b.z);
 		// Debug.Log("Vel_b: " + vel_b.ToString());
 		if (indicator != null) {
-			indicator.text = string.Format("Airspeed: {0}\nAlpha: {1}\nAlpha Crit: {2}", vel_b.magnitude, alpha, alphaCrit);
+			string indicatorText = "Airspeed\n" + vel_b.magnitude;
+			indicatorText = isStalling ? "\nSTALL. GO FASTER." : indicatorText;
+			indicator.color = isStalling ? Color.red : Color.black;
+			indicator.text = indicatorText;
 		}
 		isStalling = Mathf.Abs(alpha) > alphaCrit || vel_b.z < 8;
 
