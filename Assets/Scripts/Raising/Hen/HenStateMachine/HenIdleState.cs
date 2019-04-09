@@ -19,7 +19,9 @@ namespace Raising {
 				input.hen.state = new HenSeekFoodState(input);
 			} else if (input.bathNearby()) {
 				input.hen.state = new HenBatheState(input);
-			} else if (timeSinceStart() > 2) {
+            } else if (input.treadmillNearby()){
+                input.hen.state = new HenExerciseState(input);
+            } else if (timeSinceStart() > 2) {
 				input.hen.state = new HenWanderState(input);
 			}
 		}
