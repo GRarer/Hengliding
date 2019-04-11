@@ -29,6 +29,10 @@ namespace Raising {
 			return false;
 		}
 
-
+        public bool treadmillNearby()
+        {
+            Treadmill nearbyTreadmill = hen.findNearbyItem<Treadmill>();
+            return (nearbyTreadmill != null && nearbyTreadmill.active);
+        }
 	}
 }

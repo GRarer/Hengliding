@@ -5,30 +5,18 @@ using UnityEngine;
 namespace Racing.Agents {
 	public abstract class Agent {
 
-		//TODO combine transform.forward with Agent.FLAP_VECTOR to make more realistic / intuitive flap behavior.
-		// protected static readonly Vector3 FLAP_VECTOR = new Vector3(1, 0.5f, 0);
+		protected Glider glider;
+		protected float Lda;
+		protected float Mde;
+		protected float Ndr;
 
-		[SerializeField]
-		protected Racer racer;
-
-		protected bool inputEnabled = true;
-
-		public Agent(Racer racer) {
-			this.racer = racer;
+		public Agent(Glider glider) {
+			this.Lda = glider.getLda();
+			this.Mde = glider.getMde();
+			this.Ndr = glider.getNdr();
+			this.glider = glider;
 		}
-
-		public abstract Vector3 getVelocityChange();
-		public abstract float getInclineChange();
-		public abstract float getYawChange();
-
-		public void disableInput() {
-			inputEnabled = true;
-		}
-
-		public void enableInput() {
-			inputEnabled = true;
-		}
-
+		public abstract Vector3 getInput();
 
 	}
 }
