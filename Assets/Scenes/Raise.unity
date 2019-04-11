@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028411, g: 0.22571418, b: 0.30692253, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028462, g: 0.225715, b: 0.3069236, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3414,7 +3414,6 @@ Transform:
   - {fileID: 3711806401932970542}
   - {fileID: 4281957085467268457}
   - {fileID: 4266028460172026675}
-  - {fileID: 6946336375585804107}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3719,12 +3718,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec8cbc568a9157a4a8b5c313ca257689, type: 3}
---- !u!4 &1845339887852014691 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1845339887852014691, guid: 53c5c562ebda8db4188263b2062a1024,
-    type: 3}
-  m_PrefabInstance: {fileID: 5685579736078269217}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1846515287484764975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3875,26 +3868,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1682098075624570480}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4116514622466588807 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4116514622466588807, guid: 53c5c562ebda8db4188263b2062a1024,
-    type: 3}
-  m_PrefabInstance: {fileID: 5685579736078269217}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4116514622466588808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4116514622466588807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68d5bf2157f13a49817a4468c4a709d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxBrushTimer: 2
-  henSearchRadius: 0.025
 --- !u!4 &4266028460172026675 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4266028460172026675, guid: f7c2704ed493cd4468ace5dc9e0a22a7,
