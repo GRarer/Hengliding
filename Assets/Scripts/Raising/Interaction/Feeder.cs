@@ -4,6 +4,8 @@ namespace Raising.Interaction {
 
 	public class Feeder : MonoBehaviour {
 
+		
+		public Material[] levelMaterials;
 		public Animator feederAnimator;
 		public GameObject foodPrefab;
 
@@ -25,6 +27,16 @@ namespace Raising.Interaction {
 
 		void OnMouseUp() {
 			//drop the food
+		}
+
+		public void RaiseLevel() {
+			InventoryPersist.setFeederLevel(InventoryPersist.getFeederLevel() + 1);
+			
+			if (InventoryPersist.getFeederLevel() >= levelMaterials.Length) {
+				Debug.LogError("Feeder level exceeds number of upgrade materials!");
+			} else {
+				GetComponent<MeshRenderer>().sharedMaterial = levelMaterials[InventoryPersist.getFeederLevel()];
+			}
 		}
 	}
 }

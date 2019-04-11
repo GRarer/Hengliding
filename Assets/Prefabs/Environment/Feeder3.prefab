@@ -212,7 +212,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457716542}
-  m_LocalRotation: {x: 0.49997637, y: 0.50002366, z: -0.50002366, w: 0.49997637}
+  m_LocalRotation: {x: 0.102425896, y: 0.6996492, z: -0.6996491, w: 0.10242586}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -301,6 +301,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf5a6c9408accd49b96f41d068d8a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelMaterials:
+  - {fileID: 2100000, guid: 146cfb859466f92448119d58bfb44856, type: 2}
+  - {fileID: 2100000, guid: 15164bbd56c32744eb9f2291a5c28db2, type: 2}
+  - {fileID: 2100000, guid: 7cbc6564513388449944a5e9bc9f1af2, type: 2}
   feederAnimator: {fileID: 472703402}
   foodPrefab: {fileID: 1690970087183165799, guid: 2c173e4f12b694343bbc49c99f4beb6b,
     type: 3}

@@ -30,15 +30,21 @@ public class Shop : MonoBehaviour {
     void Initialize() {
         SetFundsText();
         CreateItemList();
+        SetCanBuyEachItem();
     }
 
     void CreateItemList() {
+        foreach (Transform child in itemsHolder.transform) {
+            Destroy(child.gameObject);
+        }
 
         int playerFunds = GetPlayerMoney();
 
         foreach (Item i in itemsForSale) {
-            ShopItemUIEntry uiEntry = GameObject.Instantiate(shopItemUIEntryTemplate, itemsHolder.transform).GetComponent<ShopItemUIEntry>();
-            uiEntry.Initialize(i);
+            if (i.CanBeBought()) {
+                ShopItemUIEntry uiEntry = GameObject.Instantiate(shopItemUIEntryTemplate, itemsHolder.transform).GetComponent<ShopItemUIEntry>();
+                uiEntry.Initialize(i);
+            }
             //uiEntry.gameObject.transform.parent = itemsHolder.transform;
         }
     }
@@ -49,7 +55,7 @@ public class Shop : MonoBehaviour {
         }
     }
 
-    void OpenShop() {
+    public void OpenShop() {
         Initialize();
         
         CameraController cam = GameObject.FindObjectOfType<CameraController>();
@@ -85,9 +91,12 @@ public class Shop : MonoBehaviour {
             // TODO play "purchase made" sound
             InventoryPersist.setMoney(InventoryPersist.getMoney() - selectedItem.cost);
             selectedItem.UseItem();
+            Debug.Log("Buy/use item");
             SetFundsText();
+            SetCanBuyEachItem();
         } else {
             // TODO play "purchase failed" sound, if wanted
+            Debug.Log("Can't afford!");
         }
         
     }
