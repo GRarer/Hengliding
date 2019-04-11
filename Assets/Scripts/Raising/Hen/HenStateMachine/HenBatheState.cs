@@ -29,6 +29,7 @@ namespace Raising {
 			input.hen.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 			input.hen.GetComponent<Animator>().SetTrigger("inWater");
 			Object.Instantiate(input.hen.bathingParticles, input.hen.transform.position, input.hen.bathingParticles.transform.rotation, bath.gameObject.transform);
+            bath.setOccupied();
 		}
 
 		override public void run() {
