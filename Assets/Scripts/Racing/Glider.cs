@@ -68,7 +68,7 @@ public class Glider : MonoBehaviour {
 			indicator.color = isStalling ? Color.red : Color.black;
 			indicator.text = indicatorText;
 		}
-		isStalling = Mathf.Abs(alpha) > alphaCrit || vel_b.z < 8;
+		isStalling = Mathf.Abs(alpha) > alphaCrit || vel_b.z < 8 && vel_b.magnitude > 0;
 
 		float cl = 0;
 		float alphaMax = Mathf.PI / 6;
