@@ -18,7 +18,9 @@ namespace Raising.Interaction {
 				RaycastHit mouseHit;
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				if (Physics.Raycast(ray, out mouseHit, 1000.0f)) {
-					transform.position = new Vector3(mouseHit.point.x, mouseHit.point.y + this.getFloatHeight(), mouseHit.point.z);
+					if (!mouseHit.collider.gameObject.Equals(this.gameObject)) {
+						transform.position = new Vector3(mouseHit.point.x, mouseHit.point.y + this.getFloatHeight(), mouseHit.point.z);
+					}
 				}
 				yield return null;
 			}

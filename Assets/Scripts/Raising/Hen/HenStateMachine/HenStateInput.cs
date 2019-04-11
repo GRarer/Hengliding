@@ -22,13 +22,17 @@ namespace Raising {
 		public bool bathNearby() {
 			Bath nearbyBath = hen.findNearbyItem<Bath>();
 
-			if (nearbyBath != null && nearbyBath.filled) {
+			if (nearbyBath != null && nearbyBath.filled && !nearbyBath.occupied) {
 				return true;
 			}
 
 			return false;
 		}
 
-
+        public bool treadmillNearby()
+        {
+            Treadmill nearbyTreadmill = hen.findNearbyItem<Treadmill>();
+            return (nearbyTreadmill != null && nearbyTreadmill.active && !nearbyTreadmill.occupied);
+        }
 	}
 }
