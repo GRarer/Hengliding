@@ -1708,7 +1708,7 @@ MonoBehaviour:
   CountDown: {fileID: 1901504858}
   loseScreen: {fileID: 0}
   winScreen: {fileID: 3509471997161283456}
-  reward: 10000
+  reward: 100
   soundOptions: {fileID: 0}
   "\u6B7B": {fileID: 0}
 --- !u!1 &1333147821
@@ -7418,6 +7418,21 @@ PrefabInstance:
       propertyPath: raceControl
       value: 
       objectReference: {fileID: 1317049841}
+    - target: {fileID: 1335923820870632161, guid: bc417261db300a8498d8a7e04f1b1070,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1abc1c6b05dbd8d46a7169020bfb0770, type: 2}
+    - target: {fileID: 1335923820870632165, guid: bc417261db300a8498d8a7e04f1b1070,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c1b194c94fba2174d970e15c4905fc27, type: 2}
+    - target: {fileID: 1335923820870632167, guid: bc417261db300a8498d8a7e04f1b1070,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c1b194c94fba2174d970e15c4905fc27, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc417261db300a8498d8a7e04f1b1070, type: 3}
 --- !u!1 &3509471997161283456 stripped
