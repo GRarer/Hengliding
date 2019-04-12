@@ -51,4 +51,8 @@ public class HenInfoPersist
 
 
     }
+
+    public void clearAllPerist() {
+        PlayerPrefs.DeleteAll();
+    }
 }
