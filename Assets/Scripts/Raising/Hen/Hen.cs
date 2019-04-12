@@ -25,6 +25,32 @@ namespace Raising {
 
 		public GameObject bathingParticles;
 
+		public MeshRenderer[] meshesToRecolorFeather;
+		public SkinnedMeshRenderer[] skinnedMeshesToRecolorFeather;
+		public SkinnedMeshRenderer[] crown;
+		public SkinnedMeshRenderer[] eyes;
+		public SkinnedMeshRenderer beak;
+		
+		public void SetMaterial() {
+
+			
+			HenMaterials breedRecolor = ResourceManager.Instance().GetHenMaterial(breed);
+			foreach (MeshRenderer mr in meshesToRecolorFeather) {
+				mr.sharedMaterial = breedRecolor.featherMat;
+			}
+			foreach (SkinnedMeshRenderer mr in skinnedMeshesToRecolorFeather) {
+				mr.sharedMaterial = breedRecolor.featherMat;
+			}
+
+			foreach (SkinnedMeshRenderer mr in eyes) {
+				mr.sharedMaterial = breedRecolor.eyeMat;
+			}
+			foreach (SkinnedMeshRenderer mr in crown) {
+				mr.sharedMaterial = breedRecolor.crownMat;
+			}
+			beak.sharedMaterial = breedRecolor.beakMat;
+		}
+
 		void Start() {
 			stateInput = new HenStateInput(this);
 			state = new HenIdleState(stateInput);
@@ -48,6 +74,8 @@ namespace Raising {
 			if (featherQuality == null) {
 				featherQuality = new Stat(this, 0, Resources.Load<GameObject>("Prefabs/SpeedIncrease"));
 			}
+
+			SetMaterial();
 		}
 
 		void Update() {

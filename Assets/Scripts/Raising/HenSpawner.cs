@@ -38,7 +38,7 @@ namespace Raising {
         private void spawnHen(HenInfo info) {
             //TODO fix the bug where hens occasionally spawn inside each other and this causes them to be launched upwards
             Vector3 position = this.transform.position 
-            + new Vector3(Random.Range(-2, 2), 0, Random.Range(-2,2));
+            + new Vector3(Random.Range(-2f, 2f), 0, Random.Range(-2f,2f));
             Hen hen = Instantiate(henPrefab, position, Quaternion.identity);
         
 
