@@ -51,7 +51,7 @@ public class ShopItemUIEntry : Toggle {
         if (!item.CanAfford(InventoryPersist.getMoney())) {
             itemCostText.color = Color.red;
         } else {
-            itemCostText.color = Color.red;
+            itemCostText.color = Color.white;
         }
     }
 

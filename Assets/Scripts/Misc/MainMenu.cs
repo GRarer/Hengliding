@@ -16,6 +16,10 @@ public class MainMenu : MonoBehaviour {
 	public void play() {
 		SceneManager.LoadScene("Raise");
 	}
+	public void newGame() {
+		PlayerPrefs.DeleteAll();
+		SceneManager.LoadScene("Raise");
+	}
 
 	public void showSettings() {
 		settingsCanvas.SetActive(true);

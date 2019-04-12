@@ -2,7 +2,7 @@
 
 namespace Raising.Interaction {
 
-	public class Brush : Draggable {
+	public class Brush : DraggableUpgradeable {
 
 		private float brushProgress = 0;
         public float maxBrushTimer = 2;
@@ -13,6 +13,9 @@ namespace Raising.Interaction {
         private float checkHenStillBeingPetTimer = 0.5f;
         private Hen lastHen;
 
+		void Start() {
+			SetMaterial(InventoryPersist.getBathLevel());
+		}
         protected override float getFloatHeight() {
 			return 0.5f;    //change if necessary
 		}
@@ -40,7 +43,7 @@ namespace Raising.Interaction {
             if (brushProgress > 0) {
                 brushProgress -= Time.deltaTime;
                 if (brushProgress <= 0) {
-                    StartCoroutine(lastHen.love.increase(1));
+                    StartCoroutine(lastHen.love.increase(1 + .5f * InventoryPersist.getPettingLevel()));
                     brushProgress = 0;
                 }
             } else {
@@ -80,6 +83,11 @@ namespace Raising.Interaction {
                 }
             }
 			return null;
+		}
+
+		public void RaiseLevel() {
+			InventoryPersist.setPettingLevel(InventoryPersist.getPettingLevel() + 1);
+			SetMaterial(InventoryPersist.getPettingLevel());
 		}
 	}
 }

@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8606223213238424465}
-  - component: {fileID: 8606223213238424466}
+  - component: {fileID: 8578680873877021566}
   m_Layer: 0
-  m_Name: ExerciseItem
+  m_Name: ChickenAyamCemani
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8606223213238424466
+--- !u!114 &8578680873877021566
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,11 +40,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8606223213238424467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59d42a00d3b12c44fa849fdc6afa5e1c, type: 3}
+  m_Script: {fileID: 11500000, guid: de148e50d4e0149418b5620a57b9cd6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Mega Cookie
-  description: Exercise Description!!!
-  cost: 50
-  itemSprite: {fileID: 21300000, guid: cb366cc8e78501e49bf43d2e762ac4d3, type: 3}
+  name: Ayam Cemani
+  description: Ayam Cemani Hen. A lovely breed!
+  cost: 300
+  itemSprite: {fileID: 21300000, guid: b74a954fe08cbd842939e8d1d8bffdd3, type: 3}
   itemUIScaleFactor: 1
+  henBreed: 2
