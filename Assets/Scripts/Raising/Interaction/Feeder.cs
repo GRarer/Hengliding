@@ -32,8 +32,8 @@ namespace Raising.Interaction {
 		}
 
 		public void RaiseLevel() {
-			InventoryPersist.setBathLevel(InventoryPersist.getBathLevel() + 1);
-			SetMaterial(InventoryPersist.getBathLevel());
+			InventoryPersist.setFeederLevel(InventoryPersist.getFeederLevel() + 1);
+			SetMaterial(InventoryPersist.getFeederLevel());
 		}
 	}
 }

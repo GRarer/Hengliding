@@ -43,7 +43,7 @@ namespace Raising.Interaction {
             if (brushProgress > 0) {
                 brushProgress -= Time.deltaTime;
                 if (brushProgress <= 0) {
-                    StartCoroutine(lastHen.love.increase(1));
+                    StartCoroutine(lastHen.love.increase(1 + .5f * InventoryPersist.getPettingLevel()));
                     brushProgress = 0;
                 }
             } else {

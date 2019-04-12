@@ -34,7 +34,7 @@ public class DraggableUpgradeable : Raising.Interaction.Draggable {
 
         
         if (matIndex >= levelMaterials.Length) {
-            Debug.LogError("Feeder level exceeds number of upgrade materials!");
+            Debug.LogError("level exceeds number of upgrade materials!");
         } else {
             Material upgradeRecolor = levelMaterials[matIndex];
             foreach (MeshRenderer mr in meshesToRecolor) {

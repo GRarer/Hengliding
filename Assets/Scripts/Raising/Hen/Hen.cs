@@ -87,19 +87,19 @@ namespace Raising {
 
 			//TODO GUI for stats
 
-			StartCoroutine(size.increase(1));
+			StartCoroutine(size.increase(1 + .5f * InventoryPersist.getFeederLevel()));
 
 			Destroy(foodItem.gameObject);
 		}
 
 		public void finishBath(Bath bath) {
-			StartCoroutine(featherQuality.increase(1));
+			StartCoroutine(featherQuality.increase(1 + .5f * InventoryPersist.getBathLevel()));
 			bath.unFill();
 		}
 
         public void finishExercise(Treadmill treadmill)
         {
-            StartCoroutine(fitness.increase(1));
+            StartCoroutine(fitness.increase(1 + .5f * InventoryPersist.getTreadmillLevel()));
 
         }
 
