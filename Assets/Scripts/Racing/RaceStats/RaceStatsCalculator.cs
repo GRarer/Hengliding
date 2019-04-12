@@ -5,6 +5,7 @@ using UnityEngine;
 public static class RaceStatsCalculator
 {
 
+
     public static readonly float MIN_WINGSPAN = 0.5f;
     public static readonly float MAX_WINGSPAN = 1.5f;
 
@@ -20,6 +21,7 @@ public static class RaceStatsCalculator
 
     //modifies static values in SelectedRaceStats based on the selected list of hens
     public static void calculateStats(List<HenInfo> hens) {
+
 
         if(hens.Count == 0) {
             //can't race with zero hens

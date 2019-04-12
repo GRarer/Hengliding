@@ -46,6 +46,8 @@ namespace Raising {
             if(System.Enum.IsDefined(typeof(HenBreed), info.breedNumber)) {
                 hen.breed = (HenBreed) info.breedNumber;
             }
+
+           
 			
             hen.henName = info.name;
             hen.love = new Stat(hen, info.loveStat, loveIncreaseIcon);
@@ -55,8 +57,13 @@ namespace Raising {
         }
 
         private void spawnHen() {
-            string newName = "Hen McHenface"; //TODO generate names
-            spawnHen(new HenInfo(newName, HenBreed.RedStar, 0, 0, 0, 0));
+            string newName = NamesList.getNextName();
+
+            int breedn = Random.Range(0, 3);
+            HenBreed breed = (HenBreed) breedn;
+            
+
+            spawnHen(new HenInfo(newName, breed, 0, 0, 0, 0));
         }        
     }
 }
