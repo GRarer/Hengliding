@@ -2,20 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChickenItem : MonoBehaviour
+public class ChickenItem : Item
 {
 
     public Raising.HenBreed henBreed;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public override bool CanBeBought() {
+        return true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public override void UseItem() {
+        Debug.LogError("Not implemented yet!");
     }
 }

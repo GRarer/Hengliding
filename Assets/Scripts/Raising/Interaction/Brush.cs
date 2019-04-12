@@ -2,7 +2,7 @@
 
 namespace Raising.Interaction {
 
-	public class Brush : Draggable {
+	public class Brush : DraggableUpgradeable {
 
 		private float brushProgress = 0;
         public float maxBrushTimer = 2;
@@ -12,8 +12,10 @@ namespace Raising.Interaction {
 
         private float checkHenStillBeingPetTimer = 0.5f;
         private Hen lastHen;
-		public Material[] levelMaterials;
 
+		void Start() {
+			SetMaterial(InventoryPersist.getBathLevel());
+		}
         protected override float getFloatHeight() {
 			return 0.5f;    //change if necessary
 		}
@@ -85,12 +87,7 @@ namespace Raising.Interaction {
 
 		public void RaiseLevel() {
 			InventoryPersist.setPettingLevel(InventoryPersist.getPettingLevel() + 1);
-			
-			if (InventoryPersist.getPettingLevel() >= levelMaterials.Length) {
-				Debug.LogError("Brush level exceeds number of upgrade materials!");
-			} else {
-				GetComponent<MeshRenderer>().sharedMaterial = levelMaterials[InventoryPersist.getPettingLevel()];
-			}
+			SetMaterial(InventoryPersist.getPettingLevel());
 		}
 	}
 }

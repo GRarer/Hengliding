@@ -900,22 +900,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 457716543, guid: 1a87199bedb631a43ad491d1b7ac4790, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.102425896
-      objectReference: {fileID: 0}
-    - target: {fileID: 457716543, guid: 1a87199bedb631a43ad491d1b7ac4790, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.6996492
-      objectReference: {fileID: 0}
-    - target: {fileID: 457716543, guid: 1a87199bedb631a43ad491d1b7ac4790, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.6996491
-      objectReference: {fileID: 0}
-    - target: {fileID: 457716543, guid: 1a87199bedb631a43ad491d1b7ac4790, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.10242586
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a87199bedb631a43ad491d1b7ac4790, type: 3}
 --- !u!4 &472703405 stripped
@@ -1465,18 +1449,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 120475764}
-    - target: {fileID: 950259189981406774, guid: 961e74393583bad479c11f1f6b81acac,
-        type: 3}
-      propertyPath: itemsForSale.Array.data[2]
-      value: 
-      objectReference: {fileID: 4300013634928865789, guid: ff6719439c286814c929cb626c975336,
-        type: 3}
-    - target: {fileID: 950259189981406774, guid: 961e74393583bad479c11f1f6b81acac,
-        type: 3}
-      propertyPath: itemsForSale.Array.data[3]
-      value: 
-      objectReference: {fileID: 293889313077707361, guid: 5eca8a1bfdd64dd4892a8cf1a9c865ef,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 961e74393583bad479c11f1f6b81acac, type: 3}
 --- !u!224 &884277433 stripped

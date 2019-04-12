@@ -3,11 +3,13 @@
 namespace Raising.Interaction
 {
 
-    public class Treadmill : MonoBehaviour
+    public class Treadmill : Upgradeable
     {
         public bool active = false;
         public bool occupied = false;
-		public Material[] levelMaterials;
+		void Start() {
+			SetMaterial(InventoryPersist.getTreadmillLevel());
+		}
         void OnMouseDown()
         {
             active = true;
@@ -27,12 +29,7 @@ namespace Raising.Interaction
 
 		public void RaiseLevel() {
 			InventoryPersist.setTreadmillLevel(InventoryPersist.getTreadmillLevel() + 1);
-			
-			if (InventoryPersist.getTreadmillLevel() >= levelMaterials.Length) {
-				Debug.LogError("Treadmill level exceeds number of upgrade materials!");
-			} else {
-				GetComponent<MeshRenderer>().sharedMaterial = levelMaterials[InventoryPersist.getTreadmillLevel()];
-			}
+			SetMaterial(InventoryPersist.getTreadmillLevel());
 		}
     }
 }

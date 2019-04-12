@@ -2,12 +2,15 @@ using UnityEngine;
 
 namespace Raising.Interaction {
 
-	public class Bath : MonoBehaviour {
+	public class Bath : Upgradeable {
 
 		public bool filled = false;
         public bool occupied = false;
 		public GameObject water;
-		public Material[] levelMaterials;
+
+		void Start() {
+			SetMaterial(InventoryPersist.getBathLevel());
+		}
 
 		public void fill() {
 			filled = true;
@@ -26,12 +29,7 @@ namespace Raising.Interaction {
 
 		public void RaiseLevel() {
 			InventoryPersist.setBathLevel(InventoryPersist.getBathLevel() + 1);
-			
-			if (InventoryPersist.getBathLevel() >= levelMaterials.Length) {
-				Debug.LogError("Bath level exceeds number of upgrade materials!");
-			} else {
-				GetComponent<MeshRenderer>().sharedMaterial = levelMaterials[InventoryPersist.getBathLevel()];
-			}
+			SetMaterial(InventoryPersist.getBathLevel());
 		}
 	}
 }

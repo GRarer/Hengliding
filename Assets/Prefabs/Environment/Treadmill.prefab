@@ -690,7 +690,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c48117b68dc80f543a7036869dfd897e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelMaterials:
+  - {fileID: 2100000, guid: 146cfb859466f92448119d58bfb44856, type: 2}
+  - {fileID: 2100000, guid: 15164bbd56c32744eb9f2291a5c28db2, type: 2}
+  meshesToRecolor:
+  - {fileID: 294589496813856940}
+  - {fileID: 294589496813856942}
+  - {fileID: 294589496813856936}
+  - {fileID: 294589496813856938}
+  - {fileID: 294589496813856932}
+  - {fileID: 294589496813856934}
+  - {fileID: 294589496813856928}
+  - {fileID: 294589496813856930}
+  - {fileID: 294589496813856956}
+  - {fileID: 294589496813856958}
+  skinnedMeshesToRecolor: []
   active: 0
+  occupied: 0
 --- !u!65 &6946336375585969004
 BoxCollider:
   m_ObjectHideFlags: 0

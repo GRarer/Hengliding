@@ -305,6 +305,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 146cfb859466f92448119d58bfb44856, type: 2}
   - {fileID: 2100000, guid: 15164bbd56c32744eb9f2291a5c28db2, type: 2}
   - {fileID: 2100000, guid: 7cbc6564513388449944a5e9bc9f1af2, type: 2}
+  meshesToRecolor:
+  - {fileID: 375386311}
+  skinnedMeshesToRecolor:
+  - {fileID: 89838421}
   feederAnimator: {fileID: 472703402}
   foodPrefab: {fileID: 1690970087183165799, guid: 2c173e4f12b694343bbc49c99f4beb6b,
     type: 3}

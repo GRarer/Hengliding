@@ -98,6 +98,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxBrushTimer: 2
   henSearchRadius: 0.025
+  levelMaterials:
+  - {fileID: 2100000, guid: 15164bbd56c32744eb9f2291a5c28db2, type: 2}
+  meshesToRecolor:
+  - {fileID: 4954275216986632596}
+  skinnedMeshesToRecolor: []
 --- !u!1001 &4954275216988662260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -170,6 +175,12 @@ PrefabInstance:
 --- !u!4 &4954275216989057908 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: a11f821ba0442ae4e9340274c2c77425,
+    type: 3}
+  m_PrefabInstance: {fileID: 4954275216988662260}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4954275216986632596 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300000, guid: a11f821ba0442ae4e9340274c2c77425,
     type: 3}
   m_PrefabInstance: {fileID: 4954275216988662260}
   m_PrefabAsset: {fileID: 0}

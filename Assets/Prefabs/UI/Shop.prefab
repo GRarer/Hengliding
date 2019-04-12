@@ -785,9 +785,9 @@ MonoBehaviour:
   - {fileID: 293889313077707361, guid: 5eca8a1bfdd64dd4892a8cf1a9c865ef, type: 3}
   - {fileID: 3830782082363780841, guid: 03aa9cace1793564f8c6da2ff7040a5e, type: 3}
   - {fileID: 2170044347113415161, guid: 3a7019e0b1c56d24782f5e899fc62f63, type: 3}
-  - {fileID: 8606223213238424466, guid: 79e1366fb15871346b928bb17927d5e0, type: 3}
-  - {fileID: 8606223213238424466, guid: 598cd7de5a831594eb690cd7c5d23062, type: 3}
-  - {fileID: 8606223213238424466, guid: f39e1f62ebd3fdd459b54bbbad33f8ad, type: 3}
+  - {fileID: 1298150735316860077, guid: f39e1f62ebd3fdd459b54bbbad33f8ad, type: 3}
+  - {fileID: 8578680873877021566, guid: 598cd7de5a831594eb690cd7c5d23062, type: 3}
+  - {fileID: 8740353972088737694, guid: 79e1366fb15871346b928bb17927d5e0, type: 3}
   itemsHolder: {fileID: 950259188793503772}
   shopItemUIEntryTemplate: {fileID: 493493682183102956, guid: ccf60091840d4cc42a42d62df0d75c6b,
     type: 3}
