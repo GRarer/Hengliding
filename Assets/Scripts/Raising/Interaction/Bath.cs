@@ -2,11 +2,15 @@ using UnityEngine;
 
 namespace Raising.Interaction {
 
-	public class Bath : MonoBehaviour {
+	public class Bath : Upgradeable {
 
 		public bool filled = false;
         public bool occupied = false;
 		public GameObject water;
+
+		void Start() {
+			SetMaterial(InventoryPersist.getBathLevel());
+		}
 
 		public void fill() {
 			filled = true;
@@ -21,6 +25,11 @@ namespace Raising.Interaction {
 			filled = false;
             occupied = false;
 			water.SetActive(false);
+		}
+
+		public void RaiseLevel() {
+			InventoryPersist.setBathLevel(InventoryPersist.getBathLevel() + 1);
+			SetMaterial(InventoryPersist.getBathLevel());
 		}
 	}
 }

@@ -25,6 +25,12 @@ public class Glider : MonoBehaviour {
 	public GameObject collisionExplosion;
 	public bool isStalling = false;
 
+	public Raising.HenBreed henBreed;
+	public List<SkinnedMeshRenderer> featherColoredMeshes;
+	public List<SkinnedMeshRenderer> beakColoredMeshes;
+	public List<SkinnedMeshRenderer> crownColoredMeshes;
+	public List<SkinnedMeshRenderer> eyeColoredMeshes;
+
     // Use this for initialization
     void Start () {
 		rb = GetComponent<Rigidbody>();
@@ -105,6 +111,32 @@ public class Glider : MonoBehaviour {
 
 	public void setAgent(Agent agent) {
 		this.agent = agent;
+
+		// I know this is bad code
+		if (agent is PlayerAgent) {
+			henBreed = RaceStatsCalculator.playerHenBreed;
+			SetMaterial();
+		}
+	}
+
+	public void SetMaterial() {
+
+		
+		HenMaterials breedRecolor = ResourceManager.Instance().GetHenMaterial(henBreed);
+		
+		foreach (SkinnedMeshRenderer mr in featherColoredMeshes) {
+			mr.sharedMaterial = breedRecolor.featherMat;
+		}
+
+		foreach (SkinnedMeshRenderer mr in eyeColoredMeshes) {
+			mr.sharedMaterial = breedRecolor.eyeMat;
+		}
+		foreach (SkinnedMeshRenderer mr in crownColoredMeshes) {
+			mr.sharedMaterial = breedRecolor.crownMat;
+		}
+		foreach (SkinnedMeshRenderer mr in beakColoredMeshes) {
+			mr.sharedMaterial = breedRecolor.beakMat;
+		}
 	}
 	
 	public Agent getAgent() {

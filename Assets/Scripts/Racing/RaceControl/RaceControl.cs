@@ -22,10 +22,19 @@ namespace Racing {
 		private GameObject[] gliders;
 		enum states { COUNTDOWN, INPROGRESS, END };
 		private states state = states.COUNTDOWN;
+		public Raising.HenBreed playerHenBreed;
 
 		public int reward = 10000;
 
+		public SoundOptions soundOptions;
+		public SoundManager 死;
+
 		void Start() {
+			死 = SoundManagerStaticReference.GetSoundManager();
+			soundOptions = SoundManagerStaticReference.GetSoundOptions();
+			死.Playsfx(SoundManager.SFX.Race);
+
+
 			winScreen.SetActive(false);
 			gliders = new GameObject[numAI + 1];
 			Glider glider = GameObject.Instantiate(gliderPrefab, start.position - start.forward * 20, start.rotation).GetComponent<Glider>();

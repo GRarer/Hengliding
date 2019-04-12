@@ -3,10 +3,13 @@
 namespace Raising.Interaction
 {
 
-    public class Treadmill : MonoBehaviour
+    public class Treadmill : Upgradeable
     {
         public bool active = false;
         public bool occupied = false;
+		void Start() {
+			SetMaterial(InventoryPersist.getTreadmillLevel());
+		}
         void OnMouseDown()
         {
             active = true;
@@ -24,5 +27,9 @@ namespace Raising.Interaction
             occupied = false;
         }
 
+		public void RaiseLevel() {
+			InventoryPersist.setTreadmillLevel(InventoryPersist.getTreadmillLevel() + 1);
+			SetMaterial(InventoryPersist.getTreadmillLevel());
+		}
     }
 }

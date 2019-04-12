@@ -574,6 +574,20 @@ MonoBehaviour:
   breed: 0
   bathingParticles: {fileID: 6198059792538825339, guid: c9aa4238ddbd85d488f82f077f21b753,
     type: 3}
+  meshesToRecolorFeather: []
+  skinnedMeshesToRecolorFeather:
+  - {fileID: 6021481638533986045}
+  - {fileID: 1865729522600053317}
+  - {fileID: 3230381302079644778}
+  - {fileID: 2795093399050397095}
+  - {fileID: 8379786394032490387}
+  - {fileID: 9048814638737793345}
+  crown:
+  - {fileID: 5760683271660139085}
+  eyes:
+  - {fileID: 4960822232411204216}
+  - {fileID: 534625529380775431}
+  beak: {fileID: 9048814638737793345}
 --- !u!1 &4697752860385529104
 GameObject:
   m_ObjectHideFlags: 0

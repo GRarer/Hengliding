@@ -113,7 +113,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   filled: 0
+  occupied: 0
   water: {fileID: 7592598030211905916}
+  levelMaterials:
+  - {fileID: 2100000, guid: 309816c2aa9ab6b4684e235dc2b056bb, type: 2}
+  - {fileID: 2100000, guid: 4cd6b79cbb95b544ea661402d59e8a20, type: 2}
+  - {fileID: 2100000, guid: e0978b1e89021d44a8218d37288291f8, type: 2}
+  meshesToRecolor:
+  - {fileID: 287435696872651349}
+  skinnedMeshesToRecolor: []
 --- !u!65 &1021985590360921797
 BoxCollider:
   m_ObjectHideFlags: 0

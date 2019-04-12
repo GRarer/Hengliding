@@ -2,11 +2,15 @@ using UnityEngine;
 
 namespace Raising.Interaction {
 
-	public class Feeder : MonoBehaviour {
+	public class Feeder : Upgradeable {
 
+		
 		public Animator feederAnimator;
 		public GameObject foodPrefab;
 
+		void Start() {
+			SetMaterial(InventoryPersist.getFeederLevel());
+		}
 		void OnMouseEnter() {
 			feederAnimator.SetBool("isOpen", true);
 		}
@@ -25,6 +29,11 @@ namespace Raising.Interaction {
 
 		void OnMouseUp() {
 			//drop the food
+		}
+
+		public void RaiseLevel() {
+			InventoryPersist.setFeederLevel(InventoryPersist.getFeederLevel() + 1);
+			SetMaterial(InventoryPersist.getFeederLevel());
 		}
 	}
 }

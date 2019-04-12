@@ -21,7 +21,7 @@ public class test : MonoBehaviour
 
     void Update() {
         if(Input.GetKeyDown(KeyCode.Z)) {
-            soundManager.Playsfx(SoundManager.SFX.sfx1);
+            soundManager.Playsfx(SoundManager.SFX.weabMusic1);
         }
         if(Input.GetKeyDown(KeyCode.X)) {
             soundManager.Playsfx(SoundManager.SFX.sfx2);

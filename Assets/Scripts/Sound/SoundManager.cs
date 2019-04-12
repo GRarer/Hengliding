@@ -2,48 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
-{
+public class SoundManager : MonoBehaviour {
 
-    public enum SFX {
-        sfx1,
-        sfx2,
-    }
+	public enum SFX {
+		weabMusic1,
+		sfx2,
+		weabMusic2,
+		chickenMarch,
+		chickenMarchDubstep,
+		Loss,
+		Victory,
+		Race,
+		Farm,
+		Main,
+	}
 
-    [SerializeField] AudioSource bgm;
-    [SerializeField] AudioSource[] sfxArray;
+	[SerializeField] AudioSource bgm;
+	[SerializeField] AudioSource[] sfxArray;
 
-    void Start() {
-        PlayBGM();
-    }
+	void Start() {
+		// PlayBGM();
+	}
 
-    public void PlayBGM() {
-        bgm.Play();
-    }
+	public void PlayBGM() {
+		bgm.Play();
+	}
 
-    public void PauseBGM() {
-        bgm.Pause();
-    }
+	public void PauseBGM() {
+		bgm.Pause();
+	}
 
-    public void StopBGM() {
-        bgm.Stop();
-    }
+	public void StopBGM() {
+		bgm.Stop();
+	}
 
-    public void UnPauseBGM() {
-        bgm.UnPause();
-    }
+	public void UnPauseBGM() {
+		bgm.UnPause();
+	}
 
-    public void Playsfx(SFX sfxEnum) {
-        if (sfxArray[(int) sfxEnum].isPlaying) {
-            sfxArray[(int) sfxEnum].Stop();
-        }
-        sfxArray[(int) sfxEnum].Play();
-    }
+	public void Playsfx(SFX sfxEnum) {
+		if (sfxArray[(int)sfxEnum].isPlaying) {
+			sfxArray[(int)sfxEnum].Stop();
+		}
+		sfxArray[(int)sfxEnum].Play();
+	}
 
-    public void StopAllsfx() {
-        for (int i = 0; i < sfxArray.Length; i++) {
-            sfxArray[i].Stop();
-        }
-    }
+	public void StopAllsfx() {
+		for (int i = 0; i < sfxArray.Length; i++) {
+			sfxArray[i].Stop();
+		}
+	}
 
 }

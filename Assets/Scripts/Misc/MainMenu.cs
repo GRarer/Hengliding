@@ -6,13 +6,21 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 
 	public GameObject mainCanvas, settingsCanvas, creditsCanvas;
-    public SoundOptions soundOptions;
+	public SoundOptions soundOptions;
+	public SoundManager 死;
 
 	void Start() {
+		死 = SoundManagerStaticReference.GetSoundManager();
 		soundOptions = SoundManagerStaticReference.GetSoundOptions();
+
+		死.Playsfx(SoundManager.SFX.Main);
 	}
 
 	public void play() {
+		SceneManager.LoadScene("Raise");
+	}
+	public void newGame() {
+		PlayerPrefs.DeleteAll();
 		SceneManager.LoadScene("Raise");
 	}
 
@@ -37,14 +45,14 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void setMasterVolume(int volume) {
-		soundOptions.SetMasterVolume(100);
+		soundOptions.SetMasterVolume(volume);
 	}
 
 	public void setSFXVolume(int volume) {
-		soundOptions.SetMusicVolume(0);
+		soundOptions.SetMusicVolume(volume);
 	}
 
 	public void setMusicVolume(int volume) {
-		soundOptions.SetSFXVolume(0);
+		soundOptions.SetSFXVolume(volume);
 	}
 }
