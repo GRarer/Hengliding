@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Waterer
+  m_Name: WatererLv0
   m_Shader: {fileID: 4800000, guid: 965ca89872ee1cf458c96cd2bc5a1de0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

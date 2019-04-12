@@ -12,6 +12,7 @@ namespace Raising.Interaction {
 
         private float checkHenStillBeingPetTimer = 0.5f;
         private Hen lastHen;
+		public Material[] levelMaterials;
 
         protected override float getFloatHeight() {
 			return 0.5f;    //change if necessary
@@ -80,6 +81,16 @@ namespace Raising.Interaction {
                 }
             }
 			return null;
+		}
+
+		public void RaiseLevel() {
+			InventoryPersist.setPettingLevel(InventoryPersist.getPettingLevel() + 1);
+			
+			if (InventoryPersist.getPettingLevel() >= levelMaterials.Length) {
+				Debug.LogError("Brush level exceeds number of upgrade materials!");
+			} else {
+				GetComponent<MeshRenderer>().sharedMaterial = levelMaterials[InventoryPersist.getPettingLevel()];
+			}
 		}
 	}
 }

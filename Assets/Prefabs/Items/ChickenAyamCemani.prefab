@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8606223213238424465}
   - component: {fileID: 8606223213238424466}
   m_Layer: 0
-  m_Name: ExerciseItem
+  m_Name: ChickenAyamCemani
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Mega Cookie
-  description: Exercise Description!!!
+  description: Ayam Cemani Hen. A lovely breed!
   cost: 50
-  itemSprite: {fileID: 21300000, guid: cb366cc8e78501e49bf43d2e762ac4d3, type: 3}
+  itemSprite: {fileID: 21300000, guid: b74a954fe08cbd842939e8d1d8bffdd3, type: 3}
   itemUIScaleFactor: 1

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028411, g: 0.22571418, b: 0.30692253, a: 1}
+  m_IndirectSpecularColor: {r: 0.1802842, g: 0.22571422, b: 0.30692288, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1356,11 +1356,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop
       objectReference: {fileID: 0}
-    - target: {fileID: 950259189981406768, guid: 961e74393583bad479c11f1f6b81acac,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 950259189981406769, guid: 961e74393583bad479c11f1f6b81acac,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1470,6 +1465,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 120475764}
+    - target: {fileID: 950259189981406774, guid: 961e74393583bad479c11f1f6b81acac,
+        type: 3}
+      propertyPath: itemsForSale.Array.data[2]
+      value: 
+      objectReference: {fileID: 4300013634928865789, guid: ff6719439c286814c929cb626c975336,
+        type: 3}
+    - target: {fileID: 950259189981406774, guid: 961e74393583bad479c11f1f6b81acac,
+        type: 3}
+      propertyPath: itemsForSale.Array.data[3]
+      value: 
+      objectReference: {fileID: 293889313077707361, guid: 5eca8a1bfdd64dd4892a8cf1a9c865ef,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 961e74393583bad479c11f1f6b81acac, type: 3}
 --- !u!224 &884277433 stripped
@@ -3801,6 +3808,18 @@ Transform:
   m_Father: {fileID: 1068912875}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &950259189981406774 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 950259189981406774, guid: 961e74393583bad479c11f1f6b81acac,
+    type: 3}
+  m_PrefabInstance: {fileID: 884277432}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d3a73ccdd92a4418578536570351fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1682098075624570480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4154,6 +4173,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1422838802}
+    - target: {fileID: 4744839286674091609, guid: b8be57a02fb7cbf4180f9a0a1bc61b8d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 950259189981406774}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8be57a02fb7cbf4180f9a0a1bc61b8d, type: 3}
 --- !u!1001 &5454492706584140295

@@ -16,6 +16,12 @@ public class Shop : MonoBehaviour {
 
     Item selectedItem;
 
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.M)) {
+            InventoryPersist.setMoney(InventoryPersist.getMoney() + 100);
+        }
+    }
+
     void OnEnable() {
         OpenShop();
     }
@@ -41,7 +47,10 @@ public class Shop : MonoBehaviour {
         int playerFunds = GetPlayerMoney();
 
         foreach (Item i in itemsForSale) {
-            if (i.CanBeBought()) {
+            if (i == null) {
+                Debug.LogError("Null Item!");
+
+            } else if (i.CanBeBought()) { // IF i IS NULL, UNITY CRASHES
                 ShopItemUIEntry uiEntry = GameObject.Instantiate(shopItemUIEntryTemplate, itemsHolder.transform).GetComponent<ShopItemUIEntry>();
                 uiEntry.Initialize(i);
             }

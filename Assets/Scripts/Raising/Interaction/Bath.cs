@@ -7,6 +7,7 @@ namespace Raising.Interaction {
 		public bool filled = false;
         public bool occupied = false;
 		public GameObject water;
+		public Material[] levelMaterials;
 
 		public void fill() {
 			filled = true;
@@ -21,6 +22,16 @@ namespace Raising.Interaction {
 			filled = false;
             occupied = false;
 			water.SetActive(false);
+		}
+
+		public void RaiseLevel() {
+			InventoryPersist.setBathLevel(InventoryPersist.getBathLevel() + 1);
+			
+			if (InventoryPersist.getBathLevel() >= levelMaterials.Length) {
+				Debug.LogError("Bath level exceeds number of upgrade materials!");
+			} else {
+				GetComponent<MeshRenderer>().sharedMaterial = levelMaterials[InventoryPersist.getBathLevel()];
+			}
 		}
 	}
 }

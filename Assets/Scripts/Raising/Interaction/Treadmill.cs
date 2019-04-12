@@ -7,6 +7,7 @@ namespace Raising.Interaction
     {
         public bool active = false;
         public bool occupied = false;
+		public Material[] levelMaterials;
         void OnMouseDown()
         {
             active = true;
@@ -24,5 +25,14 @@ namespace Raising.Interaction
             occupied = false;
         }
 
+		public void RaiseLevel() {
+			InventoryPersist.setTreadmillLevel(InventoryPersist.getTreadmillLevel() + 1);
+			
+			if (InventoryPersist.getTreadmillLevel() >= levelMaterials.Length) {
+				Debug.LogError("Treadmill level exceeds number of upgrade materials!");
+			} else {
+				GetComponent<MeshRenderer>().sharedMaterial = levelMaterials[InventoryPersist.getTreadmillLevel()];
+			}
+		}
     }
 }
