@@ -1708,6 +1708,7 @@ MonoBehaviour:
   CountDown: {fileID: 1901504858}
   loseScreen: {fileID: 0}
   winScreen: {fileID: 3509471997161283456}
+  playerHenBreed: 0
   reward: 100
   soundOptions: {fileID: 0}
   "\u6B7B": {fileID: 0}

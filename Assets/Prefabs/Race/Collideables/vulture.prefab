@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4394192193138203887}
   - component: {fileID: 4394192193138203885}
   m_Layer: 0
-  m_Name: pivot
+  m_Name: vulture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,7 +151,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 20084183d11b94545a47fd5f7d3c01dd, type: 3}
+  - {fileID: 2100000, guid: 6493fd43662c4cf448b8d557662881dd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
