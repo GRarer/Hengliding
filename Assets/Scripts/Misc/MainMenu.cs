@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 
 	public GameObject mainCanvas, settingsCanvas, creditsCanvas;
-    public SoundOptions soundOptions;
+	public SoundOptions soundOptions;
+	public SoundManager soundManager;
 
 	void Start() {
 		soundOptions = SoundManagerStaticReference.GetSoundOptions();
