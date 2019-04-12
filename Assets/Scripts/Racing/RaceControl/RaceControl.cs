@@ -39,7 +39,7 @@ namespace Racing {
 
 			winScreen.SetActive(false);
 			gliders = new GameObject[numAI + 1];
-			Glider glider = GameObject.Instantiate(gliderPrefab, start.position - start.forward * 20, start.rotation).GetComponent<Glider>();
+			Glider glider = GameObject.Instantiate(gliderPrefab, start.position - start.forward * 2, start.rotation).GetComponent<Glider>();
 			glider.setAgent(new PlayerAgent(glider));
 			//glider.transform.Find("Main Camera").gameObject.SetActive(true);
 			GameObject cam = GameObject.Instantiate(camPrefab, glider.transform.position, glider.transform.rotation);

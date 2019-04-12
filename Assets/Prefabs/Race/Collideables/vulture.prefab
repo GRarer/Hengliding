@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4394192193138203880}
   - component: {fileID: 4394192193138203887}
   - component: {fileID: 4394192193138203885}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: vulture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 4394192194328118870}
   - component: {fileID: 4394192194328118868}
   - component: {fileID: 4394192194328118869}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: vulture2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
