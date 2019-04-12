@@ -37,14 +37,14 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void setMasterVolume(int volume) {
-		soundOptions.SetMasterVolume(100);
+		soundOptions.SetMasterVolume(volume);
 	}
 
 	public void setSFXVolume(int volume) {
-		soundOptions.SetMusicVolume(0);
+		soundOptions.SetMusicVolume(volume);
 	}
 
 	public void setMusicVolume(int volume) {
-		soundOptions.SetSFXVolume(0);
+		soundOptions.SetSFXVolume(volume);
 	}
 }
