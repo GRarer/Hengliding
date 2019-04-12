@@ -14,25 +14,56 @@ public class HenSelectionControl : MonoBehaviour
     List<StackSelectionListItem> listItems;
 
     public StartRaceButton StartButton;
+    public selectionPortrait portrait;
+    public Text nameText;
+
+    public Button nextButton;
+    public Button lastButton;
+
+    List<HenInfo> henList;
+    int currentHenIndex;
+    HenInfo currentHen;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+
+        nextButton.onClick.AddListener(delegate{selectNext();});
+        lastButton.onClick.AddListener(delegate{selectPrev();});
+
         listItems = new List<StackSelectionListItem>();
 
-        List<HenInfo> henList = HenInfoPersist.loadList();
-        foreach (HenInfo info in henList) {
-            GameObject listEntry = Instantiate(listItemPrefab) as GameObject;
-            StackSelectionListItem item = listEntry.GetComponent<StackSelectionListItem>();
-            listItems.Add(item);
-            item.assignHen(info);
-            item.toggle.isOn = false;
-            item.toggle.onValueChanged.AddListener(delegate {updateStats();});
-            
+        henList = HenInfoPersist.loadList();
+        currentHenIndex = 0;
+        updateSelection();
+    }
 
-            listEntry.transform.SetParent(verticalLayout.transform, false);
-            
+
+    public void selectNext() {
+        currentHenIndex++;
+
+        if (currentHenIndex >= henList.Count) {
+            currentHenIndex = 0;
         }
+        
+        updateSelection();
+    }
+
+    public void selectPrev() {
+        currentHenIndex--;
+        if (currentHenIndex < 0) {
+            currentHenIndex = henList.Count - 1;
+        }
+        
+        updateSelection();
+    }
+
+    public void updateSelection() {
+        currentHen = henList[currentHenIndex];
+        portrait.updateImage(currentHen);
+        nameText.text = currentHen.name;
+        updateStats();
     }
 
     // Update is called once per frame
@@ -44,20 +75,12 @@ public class HenSelectionControl : MonoBehaviour
     public void updateStats() {
         //compute selection
         List<HenInfo> selectedHens = new List<HenInfo>();
-        foreach (StackSelectionListItem item in listItems) {
-            if (item.gameObject.GetComponentInChildren<Toggle>().isOn) {
-                selectedHens.Add(item.henInfo);
-            }
-        }
+        selectedHens.Add(currentHen);
 
         RaceStatsCalculator.calculateStats(selectedHens);
         displayBox.updateStats();
         StartButton.updateButton();
     }
-
-    
-
-    
 
 
 }
