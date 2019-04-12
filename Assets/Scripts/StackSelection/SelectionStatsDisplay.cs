@@ -21,7 +21,6 @@ public class SelectionStatsDisplay : MonoBehaviour
     }
 
     public void updateStats() {
-
         textbox.text = "Mass: " + SelectedRaceParameters.mass + "\n" +
             "Wingspan: " + SelectedRaceParameters.wingspan + "\n" +
             "Control Authority: " + SelectedRaceParameters.controlAuthority + "\n" +

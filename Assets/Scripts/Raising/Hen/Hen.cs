@@ -29,7 +29,7 @@ namespace Raising {
 			stateInput = new HenStateInput(this);
 			state = new HenIdleState(stateInput);
 
-			breed = HenBreed.RedStar;
+			
 
 
 			//reinitialize these only if they were not already assigned by the spawner

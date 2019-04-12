@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Raising {
     public class FarmPersistenceManager : MonoBehaviour
     {
-        public static readonly float AUTOSAVE_INTERVAL = 5f; //time between saves in seconds
+        public static readonly float AUTOSAVE_INTERVAL = 1f; //time between saves in seconds
         // Start is called before the first frame update
         void Start()
         {
@@ -18,6 +18,7 @@ namespace Raising {
         List<HenInfo> records = new List<HenInfo>();
 
         foreach (Hen obj in flock) {
+            
             records.Add(new HenInfo(obj));
         }
 

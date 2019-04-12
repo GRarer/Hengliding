@@ -11,7 +11,7 @@ public class HenInfo
 
     //Increment this number every time you add, modify, or reorder fields in this class
     //To prevent trying to read old JSON saves from an incompatible format
-    public static int VERSION_NUMBER = 3;
+    public static int VERSION_NUMBER = 5;
 
 
     public string name;
@@ -20,6 +20,7 @@ public class HenInfo
     public float fitnessStat;
     public float feathersStat;
     public int breedNumber; // we have to cast this to int for the serialization to work properly
+
 
     public HenInfo(string henName, HenBreed breed, float size, float love, float fitness, float feathers) {
         this.name = henName;
@@ -39,6 +40,9 @@ public class HenInfo
         this.fitnessStat = hen.fitness.value;
         this.feathersStat = hen.featherQuality.value;
     }
+
+    
+    
     
 
   
