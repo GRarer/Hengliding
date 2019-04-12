@@ -39,12 +39,14 @@ public class HenSelectionControl : MonoBehaviour {
 		currentHenIndex = 0;
 		updateSelection();
 
-		死 = SoundManagerStaticReference.GetSoundManager();
-		soundOptions = SoundManagerStaticReference.GetSoundOptions();
+		死 = SoundManager.Instance();
+		soundOptions = SoundOptions.Instance();
 		if (Random.Range(0.0f, 1.0f) > 0.5) {
-			死.Playsfx(SoundManager.SFX.chickenMarch);
+			死.SetBGM(SoundManager.SFX.chickenMarch);
+			死.PlayBGM();
 		} else {
-			死.Playsfx(SoundManager.SFX.chickenMarchDubstep);
+			死.SetBGM(SoundManager.SFX.chickenMarchDubstep);
+			死.PlayBGM();
 		}
 	}
 

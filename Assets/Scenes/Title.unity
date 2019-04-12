@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4706,6 +4706,67 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317592863283840721, guid: 06c4defa1214e104d8b925f7eaaad9bf,
+        type: 3}
+      propertyPath: audioClips.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317592863283840721, guid: 06c4defa1214e104d8b925f7eaaad9bf,
+        type: 3}
+      propertyPath: audioClips.Array.data[5].clipName
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317592863283840721, guid: 06c4defa1214e104d8b925f7eaaad9bf,
+        type: 3}
+      propertyPath: audioClips.Array.data[5].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8a3921b80f2cd3949b924b5a50b1bdb9, type: 3}
+    - target: {fileID: 2317592863283840721, guid: 06c4defa1214e104d8b925f7eaaad9bf,
+        type: 3}
+      propertyPath: audioClips.Array.data[6].clipName
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317592863283840721, guid: 06c4defa1214e104d8b925f7eaaad9bf,
+        type: 3}
+      propertyPath: audioClips.Array.data[6].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b13358e541dafe741bd311fcf4abdfd9, type: 3}
+    - target: {fileID: 1223752328, guid: 06c4defa1214e104d8b925f7eaaad9bf, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1223752329, guid: 06c4defa1214e104d8b925f7eaaad9bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.2504764
+      objectReference: {fileID: 0}
+    - target: {fileID: 1223752329, guid: 06c4defa1214e104d8b925f7eaaad9bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.114399806
+      objectReference: {fileID: 0}
+    - target: {fileID: 1223752329, guid: 06c4defa1214e104d8b925f7eaaad9bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.029821647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1223752329, guid: 06c4defa1214e104d8b925f7eaaad9bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9608772
+      objectReference: {fileID: 0}
+    - target: {fileID: 1223752329, guid: 06c4defa1214e104d8b925f7eaaad9bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 132.79282
+      objectReference: {fileID: 0}
+    - target: {fileID: 1223752329, guid: 06c4defa1214e104d8b925f7eaaad9bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 802.75336
+      objectReference: {fileID: 0}
+    - target: {fileID: 1223752329, guid: 06c4defa1214e104d8b925f7eaaad9bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -897.878
+      objectReference: {fileID: 0}
+    - target: {fileID: 1223752327, guid: 06c4defa1214e104d8b925f7eaaad9bf, type: 3}
+      propertyPath: m_Name
+      value: BGMSource
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06c4defa1214e104d8b925f7eaaad9bf, type: 3}

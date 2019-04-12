@@ -30,9 +30,11 @@ namespace Racing {
 		public SoundManager 死;
 
 		void Start() {
-			死 = SoundManagerStaticReference.GetSoundManager();
-			soundOptions = SoundManagerStaticReference.GetSoundOptions();
-			死.Playsfx(SoundManager.SFX.Race);
+			死 = SoundManager.Instance();
+			soundOptions = SoundOptions.Instance();
+
+			死.SetBGM(SoundManager.SFX.Race);
+			死.PlayBGM();
 
 
 			winScreen.SetActive(false);
@@ -98,6 +100,12 @@ namespace Racing {
 			}
 			if (didWin) {
 				InventoryPersist.setMoney(InventoryPersist.getMoney() + reward);
+
+				SoundManager.Instance().StopBGM();
+				SoundManager.Instance().PlayAnySFX(SoundManager.SFXv2.Victory);
+			} else {
+				SoundManager.Instance().StopBGM();
+				SoundManager.Instance().PlayAnySFX(SoundManager.SFXv2.Loss);
 			}
 		}
 	}

@@ -150,7 +150,7 @@ public class Glider : MonoBehaviour {
 				explosion.transform.rotation = transform.rotation;
 
 				// lose the race
-				GameObject.FindObjectOfType<Racing.RaceControl>().GetComponent<Racing.RaceControl>().endRace(false);
+				//GameObject.FindObjectOfType<Racing.RaceControl>().GetComponent<Racing.RaceControl>().endRace(false);
 			}
 	}
 
