@@ -22,7 +22,6 @@ public static class RaceStatsCalculator
     //modifies static values in SelectedRaceStats based on the selected list of hens
     public static void calculateStats(List<HenInfo> hens) {
 
-        Debug.Log("Calc");
 
         if(hens.Count == 0) {
             //can't race with zero hens

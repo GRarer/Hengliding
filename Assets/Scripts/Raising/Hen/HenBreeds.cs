@@ -2,6 +2,8 @@
 namespace Raising {
 
 	public enum HenBreed {
-		RedStar
+		RedStar,
+		Silkie,
+		AyamCemani
 	}
 }

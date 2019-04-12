@@ -16,16 +16,11 @@ public class selectionPortrait : MonoBehaviour
         image.sprite = breedSprites[0];
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void updateImage(HenInfo hen) {
         int i = hen.breedNumber;
 
-        if (i > 0 && i < 3) {
+        if (i >= 0 && i < 3) {
             image.sprite = breedSprites[i];
         }
     }

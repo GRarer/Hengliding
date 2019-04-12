@@ -55,11 +55,14 @@ namespace Raising {
         }
 
         private void spawnHen() {
-            string newName = "Hen McHenface"; //TODO generate names
+            string newName = NamesList.getNextName();
 
-            int breed = Random.Range(0, 2);
+            int breedn = Random.Range(0, 3);
+            HenBreed breed = (HenBreed) breedn;
 
-            spawnHen(new HenInfo(newName, (HenBreed) breed, 0, 0, 0, 0));
+            Debug.Log("Random int: " + breedn + " Breed: " + breed);
+
+            spawnHen(new HenInfo(newName, breed, 0, 0, 0, 0));
         }        
     }
 }
