@@ -100,7 +100,7 @@ namespace Raising {
 			GetComponent<Rigidbody>().velocity += transform.forward * -1 * 0.5f;
 			yield return new WaitForSeconds(Random.Range(1f, 2f));
 			GetComponent<Rigidbody>().velocity += new Vector3(0, 0, 0);
-			yield return new WaitForSeconds(Random.Range(3f, 6f));
+			yield return new WaitForSeconds(Random.Range(1f, 3f));
 		}
 
 		void OnCollisionEnter(Collision col) {
