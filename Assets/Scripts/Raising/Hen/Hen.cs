@@ -145,6 +145,7 @@ namespace Raising {
 			//TODO support for different levels of food quality
 
 			//TODO GUI for stats
+			SoundManager.Instance().PlayAnySFX(SoundManager.SFXv2.Food);
 
 			StartCoroutine(size.increase(1 + .5f * InventoryPersist.getFeederLevel()));
 

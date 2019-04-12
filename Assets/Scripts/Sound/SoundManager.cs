@@ -26,6 +26,10 @@ public class SoundManager : MonoBehaviour {
 		cluck5,
 		Loss,
 		Victory,
+		Splash,
+		Treadmill,
+		Brush,
+		Food
 	}
 
 	[SerializeField] AudioSource bgm;
@@ -79,18 +83,27 @@ public class SoundManager : MonoBehaviour {
 	}
 
 	public void PlayAnySFX(SFXv2 sfx) {
-		foreach (AudioSource source in generalUseAudioSources) {
-			if (!source.isPlaying) {
+		
+		AudioClip clip = null;
+		foreach (var pair  in audioClips) {
+			if (pair.clipName == sfx) {
 
-				foreach (var pair  in audioClips) {
-					if (pair.clipName == sfx) {
-
-						source.clip = pair.clip;
-						source.Play();
-					}
-				}
+				clip = pair.clip;
 				break;
 			}
+		}
+		bool sfxPlayed = false;
+		foreach (AudioSource source in generalUseAudioSources) {
+			if (!source.isPlaying) {
+				source.clip = clip;
+				source.Play();
+				sfxPlayed = true;
+				break;
+			}
+		}
+		if (!sfxPlayed) {
+			generalUseAudioSources[0].clip = clip;
+			generalUseAudioSources[0].Play();
 		}
 	}
 
