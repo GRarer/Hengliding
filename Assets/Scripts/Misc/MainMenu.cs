@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 
 	public GameObject mainCanvas, settingsCanvas, creditsCanvas;
+    public SoundOptions soundOptions;
+
+	void Start() {
+		soundOptions = SoundManagerStaticReference.GetSoundOptions();
+	}
 
 	public void play() {
 		SceneManager.LoadScene("Raise");
@@ -29,5 +34,17 @@ public class MainMenu : MonoBehaviour {
 
 	public void quit() {
 		Application.Quit();
+	}
+
+	public void setMasterVolume(int volume) {
+		soundOptions.SetMasterVolume(100);
+	}
+
+	public void setSFXVolume(int volume) {
+		soundOptions.SetMusicVolume(0);
+	}
+
+	public void setMusicVolume(int volume) {
+		soundOptions.SetSFXVolume(0);
 	}
 }
