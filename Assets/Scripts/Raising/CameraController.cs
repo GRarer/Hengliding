@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour {
 	private float zoomSpeedLin = 1;     //The rate at which the camera linearally zooms to achieve the desired distance.
 	private float zoomControlMultiplier = 7;   //The rate at which scrolling the mouse changes the zoom level of the camera.
 	private float rotateSpeedKeys = 15;
-	private float minZoomDistance = 2;   //The maximum distance allowed for the camera zoom.
+	private float minZoomDistance = 0.2f;   //The maximum distance allowed for the camera zoom.
 	private float maxZoomDistance = 10;    //The minimum distance allowed for the camera zoom.
 	private float rotMomentumDecayExp = 3f; //The rate at which the camera exponentially slows down its rotation.
 	private float rotMomentumDecayLin = 1.0f;   //The rate at which the camera linerally slows down its rotation.
@@ -35,14 +35,22 @@ public class CameraController : MonoBehaviour {
 
 	public static bool inputEnabled = true;
 
-	public GameObject focusObject;	//The object to intially have the camera look at.
-	public float startingYOffset;	//The amount of y-value to add to the center of the startingObject to make the camera have a focus that is not inside the starting object.
+	public GameObject focusObject;  //The object to intially have the camera look at.
+	public float startingYOffset;   //The amount of y-value to add to the center of the startingObject to make the camera have a focus that is not inside the starting object.
+
+
+	public SoundOptions soundOptions;
+	public SoundManager 死;
 
 	// Use this for initialization
 	void Start() {
+		死 = SoundManagerStaticReference.GetSoundManager();
+		soundOptions = SoundManagerStaticReference.GetSoundOptions();
+		死.Playsfx(SoundManager.SFX.Farm);
+
 		maintainedDistance = (minZoomDistance + maxZoomDistance) / 2f;
 		if (focusObject != null) {
-			idealFocus = focusObject.transform.position + new Vector3(0,startingYOffset,0);
+			idealFocus = focusObject.transform.position + new Vector3(0, startingYOffset, 0);
 		}
 		resetCamera();
 	}
@@ -78,8 +86,8 @@ public class CameraController : MonoBehaviour {
 		if (focusObject != null) {
 			Vector3 pos = focusObject.transform.position;
 			Vector3 sca = focusObject.transform.lossyScale;
-			idealFocus.x = Mathf.Clamp(idealFocus.x, pos.x-Mathf.Abs(sca.x/2), pos.x+Mathf.Abs(sca.x/2));
-			idealFocus.z = Mathf.Clamp(idealFocus.z, pos.z-Mathf.Abs(sca.z/2), pos.z+Mathf.Abs(sca.z/2));
+			idealFocus.x = Mathf.Clamp(idealFocus.x, pos.x - Mathf.Abs(sca.x / 2), pos.x + Mathf.Abs(sca.x / 2));
+			idealFocus.z = Mathf.Clamp(idealFocus.z, pos.z - Mathf.Abs(sca.z / 2), pos.z + Mathf.Abs(sca.z / 2));
 		}
 
 		if (Input.GetAxis("AltSelect") > 0) {
@@ -106,9 +114,9 @@ public class CameraController : MonoBehaviour {
 		//END OF INPUT SECTION, BEGINNING OF MOVEMENT SECTION
 
 		//First, the focus is moved according to any translation inputs.
-		float sep = (focus-idealFocus).magnitude;
-		if (sep > sep*linMomentumDecayExp+linMomentumDecayLin){
-			focus += (idealFocus-focus).normalized*(sep*linMomentumDecayExp+linMomentumDecayLin);
+		float sep = (focus - idealFocus).magnitude;
+		if (sep > sep * linMomentumDecayExp + linMomentumDecayLin) {
+			focus += (idealFocus - focus).normalized * (sep * linMomentumDecayExp + linMomentumDecayLin);
 		} else {
 			focus = idealFocus;
 		}
@@ -133,7 +141,7 @@ public class CameraController : MonoBehaviour {
 		newDir.eulerAngles += new Vector3(-rotationMomentum.y * (invertCameraY ? -1 : 1), rotationMomentum.x * (invertCameraX ? -1 : 1), 0);
 		float prevX = newDir.eulerAngles.x;
 		newDir.eulerAngles = new Vector3(Mathf.Clamp(newDir.eulerAngles.x, 15, 75), newDir.eulerAngles.y, newDir.eulerAngles.z);
-		if (Mathf.Abs(prevX - newDir.eulerAngles.x) > 0.001) {	//float inequality
+		if (Mathf.Abs(prevX - newDir.eulerAngles.x) > 0.001) {  //float inequality
 			rotationMomentum.y = 0;
 		}
 		if (Mathf.Abs(newDir.eulerAngles.z) > 0.001) {
