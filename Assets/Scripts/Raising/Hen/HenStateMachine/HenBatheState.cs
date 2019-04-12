@@ -30,6 +30,8 @@ namespace Raising {
 			input.hen.GetComponent<Animator>().SetTrigger("inWater");
 			Object.Instantiate(input.hen.bathingParticles, input.hen.transform.position, input.hen.bathingParticles.transform.rotation, bath.gameObject.transform);
             bath.setOccupied();
+
+			SoundManager.Instance().PlayAnySFX(SoundManager.SFXv2.Splash);
 		}
 
 		override public void run() {

@@ -30,6 +30,7 @@ namespace Raising.Interaction {
                     lastHen = under;
                     brushProgress = maxBrushTimer;
                     MakeHenFlap(lastHen);
+			        SoundManager.Instance().PlayAnySFX(SoundManager.SFXv2.Brush);
                 }
 			}
             if (!henFound && checkHenStillBeingPetTimer < 0) {
