@@ -22,6 +22,7 @@ namespace Racing {
 		private GameObject[] gliders;
 		enum states { COUNTDOWN, INPROGRESS, END };
 		private states state = states.COUNTDOWN;
+		public Raising.HenBreed playerHenBreed;
 
 		public int reward = 10000;
 
