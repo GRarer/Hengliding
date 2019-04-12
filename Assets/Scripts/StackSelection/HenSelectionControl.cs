@@ -3,83 +3,92 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HenSelectionControl : MonoBehaviour
-{
+public class HenSelectionControl : MonoBehaviour {
 
-    public GameObject listItemPrefab;
+	public GameObject listItemPrefab;
 
-    public SelectionStatsDisplay displayBox;
+	public SelectionStatsDisplay displayBox;
 
-    List<StackSelectionListItem> listItems;
+	List<StackSelectionListItem> listItems;
 
-    public StartRaceButton StartButton;
-    public selectionPortrait portrait;
-    public Text nameText;
+	public StartRaceButton StartButton;
+	public selectionPortrait portrait;
+	public Text nameText;
 
-    public Button nextButton;
-    public Button lastButton;
+	public Button nextButton;
+	public Button lastButton;
 
-    List<HenInfo> henList;
-    int currentHenIndex;
-    HenInfo currentHen;
-    
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-        nextButton.onClick.AddListener(delegate{selectNext();});
-        lastButton.onClick.AddListener(delegate{selectPrev();});
-
-        listItems = new List<StackSelectionListItem>();
-
-        henList = HenInfoPersist.loadList();
-        currentHenIndex = 0;
-        updateSelection();
-    }
+	List<HenInfo> henList;
+	int currentHenIndex;
+	HenInfo currentHen;
 
 
-    public void selectNext() {
-        currentHenIndex++;
+	public SoundOptions soundOptions;
+	public SoundManager 死;
 
-        if (currentHenIndex >= henList.Count) {
-            currentHenIndex = 0;
-        }
-        
-        updateSelection();
-    }
 
-    public void selectPrev() {
-        currentHenIndex--;
-        if (currentHenIndex < 0) {
-            currentHenIndex = henList.Count - 1;
-        }
-        
-        updateSelection();
-    }
+	// Start is called before the first frame update
+	void Start() {
 
-    public void updateSelection() {
-        currentHen = henList[currentHenIndex];
-        portrait.updateImage(currentHen);
-        nameText.text = currentHen.name;
-        updateStats();
-    }
+		nextButton.onClick.AddListener(delegate { selectNext(); });
+		lastButton.onClick.AddListener(delegate { selectPrev(); });
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+		listItems = new List<StackSelectionListItem>();
 
-    public void updateStats() {
-        //compute selection
-        List<HenInfo> selectedHens = new List<HenInfo>();
-        selectedHens.Add(currentHen);
+		henList = HenInfoPersist.loadList();
+		currentHenIndex = 0;
+		updateSelection();
 
-        RaceStatsCalculator.calculateStats(selectedHens);
-        displayBox.updateStats();
-        StartButton.updateButton();
-    }
+		死 = SoundManagerStaticReference.GetSoundManager();
+		soundOptions = SoundManagerStaticReference.GetSoundOptions();
+		if (Random.Range(0.0f, 1.0f) > 0.5) {
+			死.Playsfx(SoundManager.SFX.chickenMarch);
+		} else {
+			死.Playsfx(SoundManager.SFX.chickenMarchDubstep);
+		}
+	}
+
+
+	public void selectNext() {
+		currentHenIndex++;
+
+		if (currentHenIndex >= henList.Count) {
+			currentHenIndex = 0;
+		}
+
+		updateSelection();
+	}
+
+	public void selectPrev() {
+		currentHenIndex--;
+		if (currentHenIndex < 0) {
+			currentHenIndex = henList.Count - 1;
+		}
+
+		updateSelection();
+	}
+
+	public void updateSelection() {
+		currentHen = henList[currentHenIndex];
+		portrait.updateImage(currentHen);
+		nameText.text = currentHen.name;
+		updateStats();
+	}
+
+	// Update is called once per frame
+	void Update() {
+
+	}
+
+	public void updateStats() {
+		//compute selection
+		List<HenInfo> selectedHens = new List<HenInfo>();
+		selectedHens.Add(currentHen);
+
+		RaceStatsCalculator.calculateStats(selectedHens);
+		displayBox.updateStats();
+		StartButton.updateButton();
+	}
 
 
 }

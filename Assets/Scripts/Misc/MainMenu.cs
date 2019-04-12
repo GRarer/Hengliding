@@ -7,10 +7,13 @@ public class MainMenu : MonoBehaviour {
 
 	public GameObject mainCanvas, settingsCanvas, creditsCanvas;
 	public SoundOptions soundOptions;
-	public SoundManager soundManager;
+	public SoundManager 死;
 
 	void Start() {
+		死 = SoundManagerStaticReference.GetSoundManager();
 		soundOptions = SoundManagerStaticReference.GetSoundOptions();
+
+		死.Playsfx(SoundManager.SFX.Main);
 	}
 
 	public void play() {
