@@ -65,6 +65,12 @@ namespace Raising {
 
             spawnHen(new HenInfo(newName, breed, 0, 0, 0, 0));
         }        
+        
+        public void spawnHen(HenBreed breed) {
+            string newName = NamesList.getNextName();            
+
+            spawnHen(new HenInfo(newName, breed, 0, 0, 0, 0));
+        }       
     }
 }
 

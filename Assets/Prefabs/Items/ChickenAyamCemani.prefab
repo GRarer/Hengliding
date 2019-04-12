@@ -48,4 +48,4 @@ MonoBehaviour:
   cost: 300
   itemSprite: {fileID: 21300000, guid: b74a954fe08cbd842939e8d1d8bffdd3, type: 3}
   itemUIScaleFactor: 1
-  henBreed: 0
+  henBreed: 2

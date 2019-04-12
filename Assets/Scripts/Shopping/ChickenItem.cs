@@ -12,6 +12,6 @@ public class ChickenItem : Item
     }
 
     public override void UseItem() {
-        Debug.LogError("Not implemented yet!");
+        GameObject.FindObjectOfType<Raising.HenSpawner>().spawnHen(henBreed);
     }
 }
