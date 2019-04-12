@@ -30,6 +30,8 @@ namespace Raising {
 		public SkinnedMeshRenderer[] crown;
 		public SkinnedMeshRenderer[] eyes;
 		public SkinnedMeshRenderer beak;
+
+		public float cluckTimer;
 		
 		public void SetMaterial() {
 
@@ -76,6 +78,7 @@ namespace Raising {
 			}
 
 			SetMaterial();
+			cluckTimer = Random.Range(1f, 8f);
 		}
 
 		void Update() {
@@ -85,6 +88,34 @@ namespace Raising {
 			//prevent flying away
 			// Rigidbody rb = GetComponent<Rigidbody>();
 			// rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+
+			cluckTimer -= Time.deltaTime;
+			if (cluckTimer < 0) {
+				cluckTimer = Random.Range(5f, 12f);
+
+				SoundManager.SFXv2 cluck;
+				switch(Random.Range(0, 5)) {
+					case 0:
+					cluck = SoundManager.SFXv2.cluck1;
+					break;
+					case 1:
+					cluck = SoundManager.SFXv2.cluck2;
+					break;
+					case 2:
+					cluck = SoundManager.SFXv2.cluck3;
+					break;
+					case 3:
+					cluck = SoundManager.SFXv2.cluck4;
+					break;
+					case 4:
+					cluck = SoundManager.SFXv2.cluck5;
+					break;
+					default:
+					cluck = SoundManager.SFXv2.cluck3;
+					break;
+				}
+				SoundManager.Instance().PlayAnySFX(cluck);
+			}
 		}
 
 

@@ -10,10 +10,11 @@ public class MainMenu : MonoBehaviour {
 	public SoundManager 死;
 
 	void Start() {
-		死 = SoundManagerStaticReference.GetSoundManager();
-		soundOptions = SoundManagerStaticReference.GetSoundOptions();
+		死 = SoundManager.Instance();
+		soundOptions = SoundOptions.Instance();
 
-		死.Playsfx(SoundManager.SFX.Main);
+		死.SetBGM(SoundManager.SFX.Main);
+		死.PlayBGM();
 	}
 
 	public void play() {
