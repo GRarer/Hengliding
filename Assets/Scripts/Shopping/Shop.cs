@@ -102,6 +102,7 @@ public class Shop : MonoBehaviour {
             selectedItem.UseItem();
             Debug.Log("Buy/use item");
             SetFundsText();
+            CreateItemList();
             SetCanBuyEachItem();
         } else {
             // TODO play "purchase failed" sound, if wanted
