@@ -7,7 +7,6 @@ public class HenSelectionControl : MonoBehaviour
 {
 
     public GameObject listItemPrefab;
-    public VerticalLayoutGroup verticalLayout;
 
     public SelectionStatsDisplay displayBox;
 
