@@ -19,6 +19,8 @@ public static class RaceStatsCalculator
     public static readonly float MAX_AUTHORITY = 1.4f;
 
 
+    public static Raising.HenBreed playerHenBreed; // BAD CODE
+
     //modifies static values in SelectedRaceStats based on the selected list of hens
     public static void calculateStats(List<HenInfo> hens) {
 
@@ -41,6 +43,8 @@ public static class RaceStatsCalculator
             featherSum+=hen.feathersStat;
             fitnessSum+=hen.fitnessStat;
             loveSum+=hen.loveStat;
+
+            playerHenBreed = (Raising.HenBreed) hen.breedNumber;
         }
 
         sizeSum = Mathf.Clamp(sizeSum, 0, 100);
