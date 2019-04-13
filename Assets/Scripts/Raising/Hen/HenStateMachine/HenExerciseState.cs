@@ -33,6 +33,7 @@ namespace Raising
             input.hen.GetComponent<Animator>().SetTrigger("inWater");
             Object.Instantiate(input.hen.bathingParticles, input.hen.transform.position, input.hen.bathingParticles.transform.rotation, treadmill.gameObject.transform);
             treadmill.setOccupied();
+			SoundManager.Instance().PlayAnySFX(SoundManager.SFXv2.Treadmill);
         }
 
         override public void run()

@@ -5,7 +5,7 @@ public class PettingPowerup : FoodPowerUp {
     public int level;
 
     public override bool CanBeBought() {
-        return InventoryPersist.getFeederLevel() + 1 == level;
+        return InventoryPersist.getPettingLevel() + 1 == level;
     }
     public override void UseItem() {
 

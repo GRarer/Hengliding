@@ -9,11 +9,11 @@ public class test : MonoBehaviour
     SoundOptions soundOptions;
 
     void Start() {
-        soundManager = SoundManagerStaticReference.GetSoundManager();
+        soundManager = SoundManager.Instance();
         if (soundManager == null) {
             Debug.LogError("Sound Manager not found.");
         }
-        soundOptions = SoundManagerStaticReference.GetSoundOptions();
+        soundOptions = SoundOptions.Instance();
         if (soundOptions == null) {
             Debug.LogError("Sound Options not found.");
         }
